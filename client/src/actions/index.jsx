@@ -1,6 +1,7 @@
 import {auth, provider, storage} from '../firebase';
 
 export function signInAPI(){
+    console.log("signInAPI");
     return (dispatch) =>{
         auth
         .signInWithPopup(provider)
