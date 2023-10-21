@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React, { Component } from "react"
 import { connect } from "react-redux";
-
+import { signOutAPI } from "../../actions";
 
 const Header =(props) =>{
     return(
@@ -10,7 +10,7 @@ const Header =(props) =>{
            <Content>
                 <Logo>
                     <a href="/home">
-                        <img src="logoss.png" alt="home-logo" />
+                        <img src="/images/logoss.png" alt="home-logo" />
                     </a>
                 </Logo>
                 <Search>
@@ -18,7 +18,7 @@ const Header =(props) =>{
                         <input type="text" placeholder="Search" />
                     </div>
                     <SearchIcon>
-                        <img src="./search-icon.svg" alt="search-icon" />
+                        <img src="/images/search-icon.svg" alt="search-icon" />
                     </SearchIcon>
                 </Search>  
                 <Nav>
@@ -31,25 +31,25 @@ const Header =(props) =>{
                         </NavList>
                         <NavList>
                             <a>
-                                <img src="./nav-network.svg" alt="nav-network" />
+                                <img src="/images/nav-network.svg" alt="nav-network" />
                                 <span>My Network</span>
                             </a>
                         </NavList>
                         <NavList>
                             <a>
-                                <img src="./nav-jobs.svg" alt="nav-jobs" />
+                                <img src="/images/nav-jobs.svg" alt="nav-jobs" />
                                 <span>Jobs</span>
                             </a>
                         </NavList>
                         <NavList>
                             <a>
-                                <img src="./nav-messaging.svg" alt="nav-messaging" />
+                                <img src="/images/nav-messaging.svg" alt="nav-messaging" />
                                 <span>Messaging</span>
                             </a>
                         </NavList>
                         <NavList>
                             <a>
-                                <img src="./nav-notifications.svg" alt="nav-notifications" />
+                                <img src="/images/nav-notifications.svg" alt="nav-notifications" />
                                 <span>Notifications</span>
                             </a>
                         </NavList>
@@ -59,23 +59,23 @@ const Header =(props) =>{
                                 props.user && props.user.photoURL ? (
                                     <img src={props.user.photoURL} alt="user" />
                                 ):(
-                                    <img src="images/user.svg" alt="user" />
+                                    <img src="/images/user.svg" alt="user" />
                                 )
                             }
                                 <span>
                                 Me
-                                <img src="images/down-icon.svg" alt="down-icon" />
+                                <img src="/images/down-icon.svg" alt="down-icon" />
                                 </span>
                             </a>
-                            <SignOut>
+                            <SignOut onClick={()=> props.signOut()}>
                                 <a>Sign Out</a>
                             </SignOut>
                         </User>
                         <Work>
                             <a>
-                                <img src="images/work.svg" alt="work" />
+                                <img src="/images/work.svg" alt="work" />
                                 <span>Work</span>
-                                <img src="images/down-icon.svg" alt="down-icon" />
+                                <img src="/images/down-icon.svg" alt="down-icon" />
                             </a>
                         </Work>
                     </NavListWrap>
@@ -256,7 +256,7 @@ const Work = styled(User)`
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        //signOut: () => dispatch(signOutAPI()),
+        signOut: () => dispatch(signOutAPI()),
     };
 };
 
