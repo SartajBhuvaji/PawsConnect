@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import React, { Component } from "react"
+import { connect } from "react-redux";
 
 
-
-const Header =() =>{
+const Header =(props) =>{
     return(
        <Container>
         <img src="" alt="home-logo" />
@@ -54,10 +54,18 @@ const Header =() =>{
                             </a>
                         </NavList>
                         <User>
-                            <a>
-                                <img src="./user.svg" alt="user" />
-                                <span>Me</span>
-                                <img src="./down-icon.svg" alt="down-icon" />
+                        <a>
+                            {
+                                props.user && props.user.photoURL ? (
+                                    <img src={props.user.photoURL} alt="user" />
+                                ):(
+                                    <img src="images/user.svg" alt="user" />
+                                )
+                            }
+                                <span>
+                                Me
+                                <img src="images/down-icon.svg" alt="down-icon" />
+                                </span>
                             </a>
                             <SignOut>
                                 <a>Sign Out</a>
@@ -65,9 +73,9 @@ const Header =() =>{
                         </User>
                         <Work>
                             <a>
-                                <img src="./work.svg" alt="work" />
+                                <img src="images/work.svg" alt="work" />
                                 <span>Work</span>
-                                <img src="./down-icon.svg" alt="down-icon" />
+                                <img src="images/down-icon.svg" alt="down-icon" />
                             </a>
                         </Work>
                     </NavListWrap>
@@ -246,7 +254,17 @@ const Work = styled(User)`
     border-left: 1px solid rgba(0,0,0,0.08);
 `;
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        //signOut: () => dispatch(signOutAPI()),
+    };
+};
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.userState.user,
+    };
+}
 
 
-
-export default Header
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
