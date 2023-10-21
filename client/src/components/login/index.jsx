@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import { signInAPI } from "../../actions";
 
 
-const Login = (props) => {
+const Login = () => {
   return (
     <Container>
       <Nav>
@@ -21,7 +21,7 @@ const Login = (props) => {
           <img src="/images/login-hero.svg" alt="" />
         </Hero>
         <Form>
-          <Google onClick= {() => props.SignIn()}>
+          <Google>  
             <img src="/images/google.svg" alt="" />
             Sign in with Google
           </Google>
@@ -176,8 +176,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  SignIn:() => dispatch(signInAPI()),
+  //SignIn:() => dispatch(signInAPI()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;
 
