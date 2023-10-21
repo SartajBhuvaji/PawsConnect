@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import firebase from 'firebase/compat/app';
 import { postArticleAPI } from "../../actions";
 
-
 const PostModal = (props) => {
     const [editorText, setEditorText] = useState("");
     const [shareImage, setShareImage] = useState("");
@@ -40,7 +39,7 @@ const PostModal = (props) => {
             description: editorText,
             timestamp: firebase.firestore.Timestamp.now(),
         };
-        props.postArticle(payload);
+        props.postArticleAPI(payload);
         reset(e);
     };
     
@@ -292,7 +291,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    postArticle: (payload) => dispatch(postArticleAPI(payload)),
+    postArticleAPI: (payload) => dispatch(postArticleAPI(payload)),
    // signOut: () => dispatch(signOutAPI()),
 });
 
