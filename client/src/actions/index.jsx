@@ -1,6 +1,6 @@
 import {auth, provider, storage} from '../firebase';
 import db from '../firebase';
-import { SET_USER } from './actionType';
+import { SET_USER, SET_LOADING_STATUS } from './actionType';
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export const setUser = (payload) =>({
@@ -66,6 +66,38 @@ export function postArticleAPI(payload) {
                     },
                 });
             }).catch(error => console.log(error.code));
+        }
+        else if (payload.video) {
+            db.collection('articles').add({
+                actor: {
+                    description: payload.user.email,
+                    title: payload.user.displayName,
+                    date: payload.timestamp,
+                    image: payload.user.photoURL,
+                },
+                video: {
+                    video: payload.video,
+                    sharedImg: '',
+                    comments: 0,
+                    description: payload.description,
+                },
+            });
+        }
+        else { //just text
+            db.collection('articles').add({
+                actor: {
+                    description: payload.user.email,
+                    title: payload.user.displayName,
+                    date: payload.timestamp,
+                    image: payload.user.photoURL,
+                },
+                video: {
+                    video: '',
+                    sharedImg: '',
+                    comments: 0,
+                    description: payload.description,
+                },
+            });
         }
     };
 }
