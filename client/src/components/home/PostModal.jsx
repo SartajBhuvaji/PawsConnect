@@ -39,6 +39,8 @@ const PostModal = (props) => {
             description: editorText,
             timestamp: firebase.firestore.Timestamp.now(),
         };
+        console.log("FLAG 1")
+        console.log(payload);
         props.postArticleAPI(payload);
         reset(e);
     };

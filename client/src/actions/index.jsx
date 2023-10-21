@@ -1,6 +1,7 @@
 import {auth, provider, storage} from '../firebase';
 import db from '../firebase';
 import { SET_USER } from './actionType';
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export const setUser = (payload) =>({
     type: SET_USER,
@@ -40,33 +41,31 @@ export function signOutAPI(){
     };
 }
 
-export function postArticleAPI(payload){
-    return (dispatch) =>{
-        if (payload.image!= ''){
-            const upload = storage.ref('images/${payload.image.name}').put(payload.image);
-            upload.on('state_changed', (snapshot) =>{
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;    
-                console.log('Progress: ${progress}%');
-                if(snapshot.state === 'RUNNING'){
-                    console.log('Progress: ${progress}%');
-                }
-            }, error => console.log(error.code), async () =>{
-                    const downloadURL = await upload.snapshot.ref.getDownloadURL();
+// import { getStorage, ref, uploadBytes } from "firebase/storage";
 
-                    db.collection('articles').add({
-                        actor:{
-                            description: payload.user.email,
-                            title: payload.user.displayName,
-                            date: payload.timestamp,
-                            image: payload.user.photoURL,
-                            },
-                        video:{
-                            video: payload.video,
-                            sharedImg: downloadURL,
-                            comments:0,
-                            description: payload.description
-                            }});      
+export function postArticleAPI(payload) {
+    return (dispatch) => {
+        if (payload.image !== '') {
+            const storageRef = ref(storage, 'user-posts/' + payload.image.name); // Get a reference to the storage path
+
+            uploadBytes(storageRef, payload.image).then(async (snapshot) => {
+                const downloadURL = await getDownloadURL(snapshot.ref);
+
+                db.collection('articles').add({
+                    actor: {
+                        description: payload.user.email,
+                        title: payload.user.displayName,
+                        date: payload.timestamp,
+                        image: payload.user.photoURL,
+                    },
+                    video: {
+                        video: payload.video,
+                        sharedImg: downloadURL,
+                        comments: 0,
+                        description: payload.description,
+                    },
                 });
+            }).catch(error => console.log(error.code));
         }
     };
 }
