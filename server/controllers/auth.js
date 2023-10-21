@@ -34,4 +34,4 @@ export const register = async (req, res) => {
 }
 
 
-// time: 41:16
+// time: 41:16 https://www.youtube.com/watch?v=K8YELRmUb5o&t=1421s
