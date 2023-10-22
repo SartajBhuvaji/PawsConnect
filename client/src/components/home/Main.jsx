@@ -45,26 +45,9 @@ const Main = (props) => {
         <img src={props.user.photoURL} alt="" />
         ) : (
           <img src="/images/user.svg" alt="" />
-    )}
+    )
+    }
     <button onClick={handleClick} disabled={props.loading? true: false}>Start a post</button>
-    </div>
-    <div>
-      <button>
-        <img src="/images/photo-icon.svg" alt="" />
-        <span>Photo</span>
-      </button>
-      <button>
-        <img src="/images/video-icon.svg" alt="" />
-        <span>Video</span>
-      </button>
-      <button>
-        <img src="/images/event-icon.svg" alt="" />
-        <span>Event</span>
-      </button>
-      <button>
-        <img src="/images/article-icon.svg" alt="" />
-        <span>Write article</span>
-      </button>
     </div>
     </Sharebox>
 
