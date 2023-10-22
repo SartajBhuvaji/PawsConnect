@@ -81,7 +81,7 @@ export function postArticleAPI(payload) {
             }).catch(error => console.log(error.code));
         }
         else if (payload.video) {
-
+            
             db.collection('articles').add({
                 actor: {
                     description: payload.user.email,

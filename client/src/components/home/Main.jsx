@@ -88,7 +88,7 @@ const Main = (props) => {
           </button>
         </SharedActor>
         {
-          console.log("description", article)
+          //console.log("description", article)
         }
         <Description>{article.video.description}</Description>
         
@@ -115,16 +115,16 @@ const Main = (props) => {
               <span>75</span>
             </button>
           </li>
-          <li>
-            <a>2 comments</a>
-          </li>
+          {/* <li>
+            <a> comments</a>
+          </li> */}
         </SocialCounts>
         <SocialActions>
           <button>
             <img src="/images/like-icon.svg" alt="" />
             <span>Like</span>
           </button>
-          <button>
+          {/* <button>
             <img src="/images/comment-icon.svg" alt="" />
             <span>Comments</span>
           </button>
@@ -135,7 +135,7 @@ const Main = (props) => {
           <button>
             <img src="/images/send-icon.svg" alt="" />
             <span>Send</span>
-          </button>
+          </button> */}
         </SocialActions>
       </Article> ))}
       </Content>
@@ -270,7 +270,7 @@ const SharedActor = styled.div`
 `;
 
 const Description = styled.div`
-  padding: 2 16px;
+  margin-left: 16px;
   overflow: hidden;
   color: rgba(0,0,0,0.9);
   font-size: 14px;

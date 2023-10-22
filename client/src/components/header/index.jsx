@@ -6,11 +6,10 @@ import { signOutAPI } from "../../actions";
 const Header =(props) =>{
     return(
        <Container>
-        <img src="" alt="home-logo" />
            <Content>
                 <Logo>
                     <a href="/home">
-                        <img src="/images/logoss.png" alt="home-logo" />
+                        <img src="/images/linkedin.png" alt="home-logo" />
                     </a>
                 </Logo>
                 <Search>
@@ -31,26 +30,8 @@ const Header =(props) =>{
                         </NavList>
                         <NavList>
                             <a>
-                                <img src="/images/nav-network.svg" alt="nav-network" />
-                                <span>My Network</span>
-                            </a>
-                        </NavList>
-                        <NavList>
-                            <a>
                                 <img src="/images/nav-jobs.svg" alt="nav-jobs" />
                                 <span>Jobs</span>
-                            </a>
-                        </NavList>
-                        <NavList>
-                            <a>
-                                <img src="/images/nav-messaging.svg" alt="nav-messaging" />
-                                <span>Messaging</span>
-                            </a>
-                        </NavList>
-                        <NavList>
-                            <a>
-                                <img src="/images/nav-notifications.svg" alt="nav-notifications" />
-                                <span>Notifications</span>
                             </a>
                         </NavList>
                         <User>
@@ -63,7 +44,6 @@ const Header =(props) =>{
                                 )
                             }
                                 <span>
-                                Me
                                 <img src="/images/down-icon.svg" alt="down-icon" />
                                 </span>
                             </a>
@@ -71,13 +51,6 @@ const Header =(props) =>{
                                 <a>Sign Out</a>
                             </SignOut>
                         </User>
-                        <Work>
-                            <a>
-                                <img src="/images/work.svg" alt="work" />
-                                <span>Work</span>
-                                <img src="/images/down-icon.svg" alt="down-icon" />
-                            </a>
-                        </Work>
                     </NavListWrap>
                 </Nav>
 
