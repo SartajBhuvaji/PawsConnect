@@ -12,27 +12,37 @@ const Leftside = (props) => {
             <Link>Welcome, {props.user ? props.user.displayName: ''}</Link>
           </a>
           <a>
-            <AddPhotoText>Add a photo</AddPhotoText>
+            <AccountType>A wonderful Pet Parent</AccountType>
           </a>
         </UserInfo>
         <Widget>
           <a>
             <div>
-              <span>Connections</span>
-              <span>Grow your network</span>
+              <span>Pet's Name</span>
+              <span>Moon Moon</span>
+            </div>
+            <img src="/images/widget-icon.svg" alt="" />
+          </a>
+        </Widget>
+        <Widget>
+          <a>
+            <div>
+              <span>Pet's Breed</span>
+              <span>Siberian Husky</span>
             </div>
             <img src="/images/widget-icon.svg" alt="" />
           </a>
         </Widget>
         <Item>
+      
           <span>
             <img src="/images/item-icon.svg" alt="" />
-            My Items
+            Premium Activated
           </span>
         </Item>
       </ArtCard>
 
-      <CommunityCard>
+      {/* <CommunityCard>
         <a>
           <span>Groups</span>
         </a>
@@ -48,7 +58,7 @@ const Leftside = (props) => {
         <a>
           <span>Discover more</span>
         </a>
-      </CommunityCard>
+      </CommunityCard> */}
     </Container>
   );
 };
@@ -108,7 +118,7 @@ const Link = styled.div`
   font-weight: 600;
 `;
 
-const AddPhotoText = styled.div`
+const AccountType = styled.div`
   color: #0a66c2;
   margin-top: 4px;
   font-size: 12px;
