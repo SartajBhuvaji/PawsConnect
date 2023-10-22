@@ -1,11 +1,21 @@
 import {auth, provider, storage} from '../firebase';
 import db from '../firebase';
-import { SET_USER, SET_LOADING_STATUS } from './actionType';
+import { SET_USER, SET_LOADING_STATUS, GET_ARTICLES } from './actionType';
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export const setUser = (payload) =>({
     type: SET_USER,
     user: payload,
+});
+
+export const setLoading = (status) =>({
+    type: SET_LOADING_STATUS,
+    status: status,
+});
+
+export const getArticles = (payload) =>({
+    type: GET_ARTICLES,
+    payload: payload,
 });
 
 export function signInAPI(){
@@ -45,11 +55,13 @@ export function signOutAPI(){
 
 export function postArticleAPI(payload) {
     return (dispatch) => {
+        dispatch(setLoading(true));
+
         if (payload.image !== '') {
             const storageRef = ref(storage, 'user-posts/' + payload.image.name); // Get a reference to the storage path
 
             uploadBytes(storageRef, payload.image).then(async (snapshot) => {
-                const downloadURL = await getDownloadURL(snapshot.ref);
+            const downloadURL = await getDownloadURL(snapshot.ref);
 
                 db.collection('articles').add({
                     actor: {
@@ -65,9 +77,11 @@ export function postArticleAPI(payload) {
                         description: payload.description,
                     },
                 });
+                dispatch(setLoading(false));
             }).catch(error => console.log(error.code));
         }
         else if (payload.video) {
+
             db.collection('articles').add({
                 actor: {
                     description: payload.user.email,
@@ -82,6 +96,7 @@ export function postArticleAPI(payload) {
                     description: payload.description,
                 },
             });
+            dispatch(setLoading(false));
         }
         else { //just text
             db.collection('articles').add({
@@ -98,6 +113,23 @@ export function postArticleAPI(payload) {
                     description: payload.description,
                 },
             });
+            dispatch(setLoading(false));
         }
+    };
+}
+
+
+
+
+
+export function getArticlesAPI() {
+    return (dispatch) => {
+        let payload;
+
+        db.collection('articles').orderBy('actor.date', 'desc').onSnapshot((snapshot) => {
+            payload = snapshot.docs.map((doc) => doc.data());
+            console.log(payload);
+            dispatch(getArticles(payload));
+        });
     };
 }
