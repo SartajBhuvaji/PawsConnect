@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import { signInAPI } from "../../actions";
 import { Navigate } from 'react-router-dom';
 
-
 const Login = (props) => {
   return (
     <Container>
@@ -15,14 +14,14 @@ const Login = (props) => {
           <img src="/images/login-logo.svg" alt="" />
         </a>
         <div>
-          <Join>Join now</Join>
-          <SignIn>Sign in</SignIn>
+          {/* <Join>Join now</Join>
+          <SignIn>Sign in</SignIn> */}
         </div>
       </Nav>
       <Section>
         <Hero>
-          <h1>Welcome to your professional community</h1>
-          <img src="/images/login-hero.svg" alt="" />
+          <h1>Welcome to a social media for dogs!</h1>
+          <img src="/images/home-background.jpg" alt="" />
         </Hero>
         <Form>
           <Google onClick={()=> props.signIn()}>  
@@ -112,6 +111,7 @@ const Section = styled.section`
 
 const Hero = styled.div`
   width: 100%;
+  margin-left: -75px;
   h1 {
     padding-bottom: 0;
     width: 55%;
@@ -124,16 +124,16 @@ const Hero = styled.div`
       font-size: 20px;
       width: 100%;
       line-height: 2;
-    }
+      }
   }
 
   img {
     /* z-index: -1; */
     width: 700px;
-    height: 670px;
+    height: 900px;
     position: absolute;
-    bottom: -2px;
-    right: -150px;
+    bottom: 100px;
+    right: -250px;
     @media (max-width: 768px) {
       top: 230px;
       width: initial;

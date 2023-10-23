@@ -12,14 +12,10 @@ const Header =(props) =>{
                         <img src="/images/linkedin.png" alt="home-logo" />
                     </a>
                 </Logo>
-                <Search>
-                    <div>
-                        <input type="text" placeholder="Search" />
-                    </div>
-                    <SearchIcon>
-                        <img src="/images/search-icon.svg" alt="search-icon" />
-                    </SearchIcon>
-                </Search>  
+                <Description>
+                PawsConnect: A LinkedIn for Dogs
+                </Description>
+                
                 <Nav>
                     <NavListWrap>
                         <NavList className="active">
@@ -48,7 +44,7 @@ const Header =(props) =>{
                                 </span>
                             </a>
                             <SignOut onClick={()=> props.signOut()}>
-                                <a>Sign Out</a>
+                            <img src="/images/signout-icon.svg" alt="sign-out" width="28" height="28"/>    
                             </SignOut>
                         </User>
                     </NavListWrap>
@@ -221,6 +217,14 @@ const User = styled(NavList)`
             justify-content: center;
         }
     }
+`;
+const Description = styled.div`
+    font-size: 22px;
+    color: rgba(0,0,0,0.6);
+    margin: 0 24px;
+    line-height: 1.5;
+    overflow: hidden;
+    text-align: center;
 `;
 
 const Work = styled(User)`

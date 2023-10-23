@@ -12,6 +12,7 @@ import { getUserAuth } from './actions';
 import { connect } from 'react-redux';
 import PetProfessionalProfile from './components/profile/petProfessionalProfile';
 import PetParentProfile from './components/profile/petParentProfile';
+import Jobs from './components/jobs';
 
 function App(props) {
   useEffect(() => {
@@ -47,6 +48,12 @@ function App(props) {
           <Route path="/profile/pet_professional" element={
             <><Header />
             <PetProfessionalProfile />
+            </>}>"      
+          </Route>
+
+          <Route path="/jobs" element={
+            <><Header />
+            <Jobs />
             </>}>"      
           </Route>
 

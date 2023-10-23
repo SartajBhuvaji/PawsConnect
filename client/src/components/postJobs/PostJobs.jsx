@@ -39,8 +39,6 @@ const PostModal = (props) => {
             description: editorText,
             timestamp: firebase.firestore.Timestamp.now(),
         };
-        console.log("FLAG 1")
-        console.log(payload);
         props.postArticleAPI(payload);
         reset(e);
     };
@@ -61,7 +59,7 @@ const PostModal = (props) => {
         <Container>
             <Content>
                 <Header>
-                    <h2> Create a post</h2>
+                    <h2> Post a job</h2>
                     <button onClick={(event)=> reset(event)}>
                     <img src="/images/close-icon.svg" alt="share-video" width="28" height="28"/>    
                     </button>
@@ -76,42 +74,31 @@ const PostModal = (props) => {
                     </UserInfo>
                 <Editor>
                     <textarea value ={editorText} 
-                    placeholder="What's on your mind?" 
+                    placeholder="Job Title" 
                     autoFocus={true} 
                     onChange={(e)=>setEditorText(e.target.value)}>    
-                    </textarea>
-                    {
-                        assetArea === "image" ? (
-                    <UploadImage>
-                        <input type="file" accept="image/gif, image/jpeg, image/png" id="file" style={{display: "none"}} onChange={handleChange} />
-                        <p><label htmlFor="file">Select image</label></p>
-                        {
-                            shareImage && <img src={URL.createObjectURL(shareImage)} alt="share-image" />  
-                        }
-                    </UploadImage>
-                    ) : (
-                        assetArea === "media" &&
-                        <>
-                        <input type="text" placeholder="Please input a video link" value={videoLink} onChange={(e)=> setVideoLink(e.target.value)} />
-                        {
-                            videoLink && <ReactPlayer width={"100%"} url={videoLink} />
-                        }
-                        </>
-                    )}
-                        
+                    </textarea>                 
                 </Editor>
+                <Editor>
+                    <textarea value ={editorText} 
+                    placeholder="Job Description" 
+                    autoFocus={true} 
+                    onChange={(e)=>setEditorText(e.target.value)}>    
+                    </textarea>                 
+                </Editor>
+                <Editor>
+                    <textarea value ={editorText} 
+                    placeholder="Pay" 
+                    autoFocus={true} 
+                    onChange={(e)=>setEditorText(e.target.value)}>    
+                    </textarea>                 
+                </Editor>
+
+
                 </SharedContent>
                 <ShradedCreation>
-                    <AttachAssets>
-                        <AssetButton onClick={()=> switchAssetArea("image")}>
-                            <img src="/images/share-image-icon.svg" alt="share-image" width="28" height="28"/>    
-                        </AssetButton> 
-                        <AssetButton onClick={()=> switchAssetArea("media")}>
-                            <img src="/images/share-video-icon.svg" alt="share-video" width="28" height="28"/>    
-                        </AssetButton>       
-                    </AttachAssets>
 
-                    <PostButton disabled= {!editorText ? true: false} onClick={(event)=>postArticle(event)}>Post</PostButton>
+                <PostButton disabled= {!editorText ? true: false} onClick={(event)=>postArticle(event)}>Post</PostButton>
                 </ShradedCreation>
             </Content>
         </Container>

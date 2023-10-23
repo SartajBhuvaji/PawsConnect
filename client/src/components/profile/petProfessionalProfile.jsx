@@ -8,6 +8,7 @@ const PetProfessioalProfile = (props) => {
     business_name: '',
     business_type: '',
     account_type: 'pet_parent',
+    rating: 0,
   });
 
   const handleSubmit = (e) => {
