@@ -22,7 +22,6 @@ const Profile = (props) => {
                 <Layout>
                     
                     <AccountChoice />
-                    {/* <PetParentProfile /> */}
                 </Layout>
             </Container>
     )

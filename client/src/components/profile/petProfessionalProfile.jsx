@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import {Header} from "../header";
 
 const PetProfessioalProfile = (props) => {
   const [formData, setFormData] = useState({
@@ -11,9 +12,6 @@ const PetProfessioalProfile = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can access the form data in the formData object
-    //console.log('Form Data:', formData);
-    // You can perform further actions like submitting the data to a server here
   };
 
   return (
@@ -42,7 +40,7 @@ const PetProfessioalProfile = (props) => {
               required
             />
           </div>
-          <div>
+          <div style={{ paddingTop: '20px' }}>
             <label>Business Type</label>
             <Input
               type="text"

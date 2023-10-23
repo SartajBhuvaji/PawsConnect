@@ -15,6 +15,7 @@ const PetParentProfile = (props) => {
   };
 
   return (
+    
     <Container>
       <TitleBox>
         <div>
@@ -40,7 +41,7 @@ const PetParentProfile = (props) => {
               required
             />
           </div>
-          <div>
+          <div style={{ paddingTop: '20px' }}>
             <label>Pet's Breed</label>
             <Input
               type="text"
@@ -51,8 +52,9 @@ const PetParentProfile = (props) => {
               required
             />
           </div>
-          <div>
+          <div style={{ paddingTop: '20px' }}>
             <label>Pet's Age</label>
+            
             <Input
               type="text"
               name="pets_age"
