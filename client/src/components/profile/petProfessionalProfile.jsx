@@ -4,22 +4,10 @@ import { connect } from 'react-redux';
 
 const PetProfessioalProfile = (props) => {
   const [formData, setFormData] = useState({
-    pets_name: '',
-    pets_breed: '',
-    pets_age: '',
+    business_name: '',
+    business_type: '',
     account_type: 'pet_parent',
   });
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    const inputValue = type === 'radio' ? (checked ? value : '') : value;
-    
-    setFormData({
-      ...formData,
-      [name]: inputValue,
-
-    });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,7 +38,7 @@ const PetProfessioalProfile = (props) => {
               name="business_name"
               placeholder="Enter the name of your business"
               value={formData.business_name}
-              onChange={handleChange}
+              onChange={(e) => {setFormData({...formData,business_name: e.target.value});}}
               required
             />
           </div>
@@ -61,7 +49,7 @@ const PetProfessioalProfile = (props) => {
               name="business_type"
               placeholder="Photographer, Groomer, Trainer, etc."
               value={formData.business_type}
-              onChange={handleChange}
+              onChange={(e) => {setFormData({...formData,business_type: e.target.value});}}
               required
             />
           </div>
