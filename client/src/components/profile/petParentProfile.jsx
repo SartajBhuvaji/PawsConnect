@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-const Main = (props) => {
+const PetParentProfile = (props) => {
   const [formData, setFormData] = useState({
     pets_name: '',
     pets_breed: '',
@@ -10,21 +10,9 @@ const Main = (props) => {
     account_type: 'pet_parent',
   });
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    const inputValue = type === 'radio' ? (checked ? value : '') : value;
-
-    setFormData({
-      ...formData,
-      [name]: inputValue,
-    });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can access the form data in the formData object
-    console.log('Form Data:', formData);
-    // You can perform further actions like submitting the data to a server here
+    //console.log('formData', formData);
   };
 
   return (
@@ -36,7 +24,7 @@ const Main = (props) => {
           ) : (
             <img src="/images/user.svg" alt="" />
           )}
-          <Title>Hello {props.user ? props.user.displayName : ''}!</Title>
+          <Title>Pet Parent {props.user ? props.user.displayName : ''}, lets complete your account.</Title>
         </div>
       </TitleBox>
 
@@ -49,7 +37,7 @@ const Main = (props) => {
               name="pets_name"
               placeholder="Enter your Pet's Name"
               value={formData.pets_name}
-              onChange={handleChange}
+              onChange={(e) => {setFormData({...formData,pets_name: e.target.value});}}
               required
             />
           </div>
@@ -60,7 +48,7 @@ const Main = (props) => {
               name="pets_breed"
               placeholder="Enter your Pet's Breed"
               value={formData.pets_breed}
-              onChange={handleChange}
+              onChange={(e) => {setFormData({...formData,pets_breed: e.target.value});}}
               required
             />
           </div>
@@ -71,38 +59,11 @@ const Main = (props) => {
               name="pets_age"
               placeholder="Enter your Pet's age"
               value={formData.pets_age}
-              onChange={handleChange}
+              onChange={(e) => {setFormData({...formData,pets_age: e.target.value});}}
               required
             />
           </div>
-          <div>
-            <label>Account Option</label>
-            <RadioLabel>
-              <input
-                type="radio"
-                id="html"
-                name="account_type"
-                value="pet_parent"
-                checked={formData.account_type === 'pet_parent'}
-                onChange={handleChange}
-                required
-              />
-              Pet Parent
-            </RadioLabel>
-            <RadioLabel>
-              <input
-                type="radio"
-                id="css"
-                name="account_type"
-                value="pet_professional"
-                checked={formData.account_type === 'pet_professional'}
-                onChange={handleChange}
-                required
-              />
-              Pet Professional
-            </RadioLabel>
-          </div>
-          <SubmitButton type="submit">Submit</SubmitButton>
+          <SubmitButton type="submit" onSubmit={handleSubmit}>Create Account!</SubmitButton>
         </form>
       </CommonCard>
     </Container>
@@ -181,7 +142,7 @@ const TitleBox = styled(CommonCard)`
         }
       }
     }
-  }`
+  }`;
 
 
 const Input = styled.input`
@@ -198,9 +159,6 @@ const Input = styled.input`
   }
 `;
 
-const RadioLabel = styled.label`
-  margin-right: 20px;
-`;
 
 const SubmitButton = styled.button`
   background-color: #70b5f9;
@@ -229,4 +187,4 @@ const mapDispatchToProps = (dispatch) => ({
   //getArticles: () => dispatch(getArticlesAPI()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(PetParentProfile);

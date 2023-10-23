@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import Main from "./Main";
+import Main from "./petParentProfile";
 
 import { Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
+import AccountChoice from './accountChoice';
+import PetParentProfile from './petParentProfile';
 
 
 const Profile = (props) => {
@@ -14,11 +16,13 @@ const Profile = (props) => {
                     !props.user && <Navigate to="/" />
                 } */}
                 <Section>
-                    
+            
                                     
                 </Section>
                 <Layout>
-                    <Main />
+                    
+                    <AccountChoice />
+                    {/* <PetParentProfile /> */}
                 </Layout>
             </Container>
     )

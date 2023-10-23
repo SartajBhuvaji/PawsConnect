@@ -10,6 +10,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getUserAuth } from './actions';
 import { connect } from 'react-redux';
+import PetProfessionalProfile from './components/profile/petProfessionalProfile';
+import PetParentProfile from './components/profile/petParentProfile';
 
 function App(props) {
   useEffect(() => {
@@ -33,6 +35,18 @@ function App(props) {
           <Route path="/profile" element={
             <><Header />
             <Profile />
+            </>}>"      
+          </Route>
+
+          <Route path="/profile/pet_parent" element={
+            <><Header />
+            <PetParentProfile />
+            </>}>"      
+          </Route>
+
+          <Route path="/profile/pet_professional" element={
+            <><Header />
+            <PetProfessionalProfile />
             </>}>"      
           </Route>
 

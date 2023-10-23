@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { connect } from "react-redux";
-import PostModal from "./PostModal";
+import PostModal from "../postmodal/PostModal";
 import {useState} from "react";
 import { Connect } from "react-redux";
 import { useEffect } from "react";
@@ -62,6 +62,13 @@ const Main = (props) => {
             <img src={article.actor.image} alt="" />
             <div>
               <span>{article.actor.title}</span>
+              {/* 
+              if Pet parent:
+                display:Pet parent of {Pet name} 
+              else:
+                display: Pet professional {Professional name}    
+                */}
+
               <span>{article.actor.description}</span>
               <span>{article.actor.date.toDate().toLocaleDateString()}</span>
             </div>
