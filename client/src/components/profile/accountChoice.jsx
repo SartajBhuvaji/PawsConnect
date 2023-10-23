@@ -28,8 +28,12 @@ const AccountChoice = (props) => {
       <CommonCard>
         <div>
           <p>Are you a Pet Parent or a Pet Professional?</p>
-          <Button onClick={() => handleChoice('Pet Parent')}>Pet Parent</Button>
-          <Button onClick={() => handleChoice('Pet Professional')}>Pet Professional</Button>
+          <Button onClick={() => handleChoice('Pet Parent')}><p>Pet Parent</p>
+          <img src="/images/dog-petparent-icon.svg" alt="" width="40" height="40" />
+          </Button>
+          <Button onClick={() => handleChoice('Pet Professional')}><p>Pet Professional</p>
+          <img src="/images/dog-petprofessional-icon.svg" alt="" width="40" height="40" />
+          </Button>
         </div>
       </CommonCard>
     </Container>
@@ -109,6 +113,8 @@ const TitleBox = styled(CommonCard)`
 
 const Button = styled.button`
   background-color: #70b5f9;
+  text-align: center;
+  font-size: 14px;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -117,12 +123,7 @@ const Button = styled.button`
   font-weight: 600;
   margin-top: 10px;
   transition: background-color 0.3s ease; 
-  margin-right: 10px;
-
-
-  :hover {
-    background-color: #5a9ee6;
-  }
+  margin-right: 40px;
 `;
 
 const mapStateToProps = (state) => {

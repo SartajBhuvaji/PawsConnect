@@ -76,7 +76,7 @@ const PostModal = (props) => {
                     </UserInfo>
                 <Editor>
                     <textarea value ={editorText} 
-                    placeholder="What do you want to talk about?" 
+                    placeholder="What's on your mind?" 
                     autoFocus={true} 
                     onChange={(e)=>setEditorText(e.target.value)}>    
                     </textarea>
@@ -104,17 +104,13 @@ const PostModal = (props) => {
                 <ShradedCreation>
                     <AttachAssets>
                         <AssetButton onClick={()=> switchAssetArea("image")}>
-                            <img src="/images/share-image.svg" alt="share-image" />    
+                            <img src="/images/share-image-icon.svg" alt="share-image" width="28" height="28"/>    
                         </AssetButton> 
                         <AssetButton onClick={()=> switchAssetArea("media")}>
-                            <img src="/images/share-video.svg" alt="share-video" />    
+                            <img src="/images/share-video-icon.svg" alt="share-video" width="28" height="28"/>    
                         </AssetButton>       
                     </AttachAssets>
-                    <ShareComment>
-                    <AssetButton>
-                            <img src="/images/share-comment.svg" alt="share-image" />    
-                    </AssetButton>  
-                    </ShareComment>
+
                     <PostButton disabled= {!editorText ? true: false} onClick={(event)=>postArticle(event)}>Post</PostButton>
                 </ShradedCreation>
             </Content>
@@ -148,11 +144,12 @@ const Content = styled.div`
     flex-direction: column;
     top: 32px;
     margin: 0 auto;
+    padding-right: 25px;
 `;
 
 const Header = styled.div`
     display: block;
-    padding: 16px 20px;
+    padding: 0px 20px;
     border-bottom: 1px solid rgba(0,0,0,0.15);
     font-size: 16px;
     line-height: 1.5;
@@ -253,12 +250,14 @@ const Editor = styled.div`
         width: 100%;
         min-height: 100px;
         resize: none;
+        border-radius: 15px;
+        padding-left: 15px;
+        padding-top: 15px;
+        padding-right: 15px;
     }
     input {
         width: 100%;
-        height: 35px;
         font-size: 16px;
-        margin-bottom: 20px;
     }
 `;  
 

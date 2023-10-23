@@ -21,7 +21,9 @@ const Leftside = (props) => {
               <span>Pet's Name</span>
               <span>Moon Moon</span>
             </div>
-            <img src="/images/widget-icon.svg" alt="" />
+            {/* <img src="/images/widget-icon.svg" alt="" /> */}
+            <img src="/images/dog-widget-icon.svg" alt="" width="28" height="28" />
+
           </a>
         </Widget>
         <Widget>
@@ -30,7 +32,7 @@ const Leftside = (props) => {
               <span>Pet's Breed</span>
               <span>Siberian Husky</span>
             </div>
-            <img src="/images/widget-icon.svg" alt="" />
+            <img src="/images/dog-widget-icon2.svg" alt="" width="40" height="40" />
           </a>
         </Widget>
         <Item>
@@ -183,7 +185,6 @@ const Item = styled.a`
     background-color: rgba(0, 0, 0, 0.08);
   }
 `;
-
 
 const mapStateToProps = (state) => {
   return {
