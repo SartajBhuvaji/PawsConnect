@@ -119,7 +119,71 @@ export function postArticleAPI(payload) {
 }
 
 
+//Need to make changes here
+export function postJobsAPI(payload) {
+    return (dispatch) => {
+        dispatch(setLoading(true));
 
+        if (payload.image !== '') {
+            const storageRef = ref(storage, 'user-jobs/' + payload.image.name); // Get a reference to the storage path
+
+            uploadBytes(storageRef, payload.image).then(async (snapshot) => {
+            const downloadURL = await getDownloadURL(snapshot.ref);
+
+                db.collection('jobs').add({
+                    actor: {
+                        description: payload.user.email,
+                        title: payload.user.displayName,
+                        date: payload.timestamp,
+                        image: payload.user.photoURL,
+                    },
+                    video: {
+                        video: payload.video,
+                        sharedImg: downloadURL,
+                        comments: 0,
+                        description: payload.description,
+                    },
+                });
+                dispatch(setLoading(false));
+            }).catch(error => console.log(error.code));
+        }
+        else if (payload.video) {
+            
+            db.collection('articles').add({
+                actor: {
+                    description: payload.user.email,
+                    title: payload.user.displayName,
+                    date: payload.timestamp,
+                    image: payload.user.photoURL,
+                },
+                video: {
+                    video: payload.video,
+                    sharedImg: '',
+                    comments: 0,
+                    description: payload.description,
+                },
+            });
+            dispatch(setLoading(false));
+        }
+        else { //just text
+            db.collection('jobs').add({
+                actor: {
+                    description: payload.user.email,
+                    title: payload.user.displayName,
+                    date: payload.timestamp,
+                    image: payload.user.photoURL,
+                },
+                video: {
+                    video: '',
+                    sharedImg: '',
+                    comments: 0,
+                    description: payload.description,
+                },
+            });
+            dispatch(setLoading(false));
+        }
+    };
+}
 
 
 export function getArticlesAPI() {
@@ -127,6 +191,19 @@ export function getArticlesAPI() {
         let payload;
 
         db.collection('articles').orderBy('actor.date', 'desc').onSnapshot((snapshot) => {
+            payload = snapshot.docs.map((doc) => doc.data());
+            console.log(payload);
+            dispatch(getArticles(payload));
+        });
+    };
+}
+
+//Need to make changes here
+export function getJobsAPI() {
+    return (dispatch) => {
+        let payload;
+
+        db.collection('jobs').orderBy('actor.date', 'desc').onSnapshot((snapshot) => {
             payload = snapshot.docs.map((doc) => doc.data());
             console.log(payload);
             dispatch(getArticles(payload));
