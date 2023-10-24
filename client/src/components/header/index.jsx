@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import React, { Component } from "react"
 import { connect } from "react-redux";
 import { signOutAPI } from "../../actions";
+import Jobs from '../jobs';
+import { NavLink } from "react-router-dom";
 
 const Header =(props) =>{
     return(
@@ -18,18 +20,18 @@ const Header =(props) =>{
                 
                 <Nav>
                     <NavListWrap>
-                        <NavList className="active">
-                            <a>
-                                <img src="/images/nav-home.svg" alt="nav-home" />
-                                <span>Home</span>
-                            </a>
+                    <NavList>
+                        <NavLink to="/home" exact activeClassName="active" className="button-link">
+                            <img src="/images/nav-home.svg" alt="nav-home" />
+                            <span>Home</span>
+                        </NavLink>
                         </NavList>
                         <NavList>
-                            <a>
-                                <img src="/images/nav-jobs.svg" alt="nav-jobs" />
-                                <span>Jobs</span>
-                            </a>
-                        </NavList>
+                        <NavLink to="/jobs" exact activeClassName="active" className="button-link">
+                            <img src="/images/nav-jobs.svg" alt="nav-jobs" />
+                            <span>Jobs</span>
+                        </NavLink>
+                    </NavList>
                         <User>
                         <a>
                             {
