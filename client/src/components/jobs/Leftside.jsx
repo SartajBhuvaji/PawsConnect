@@ -12,12 +12,14 @@ const Leftside = (props) => {
             <Link>Welcome, {props.user ? props.user.displayName: ''}</Link>
           </a>
           <a>
+            {/* {To be replaced by account type} */}
             <AccountType>A wonderful Pet Parent</AccountType>
           </a>
         </UserInfo>
         <Widget>
           <a>
             <div>
+               {/* {To be replaced by account details} */}
               <span>Pet's Name</span>
               <span>Moon Moon</span>
             </div>
