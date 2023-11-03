@@ -2,17 +2,26 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import {Header} from "../header";
+import { postProfileAPI } from '../../actions';
+import firebase from 'firebase/compat/app';
 
 const PetProfessioalProfile = (props) => {
   const [formData, setFormData] = useState({
+    user_email : props.user.email,
+    user_name: props.user.displayName,
+    user_photo: props.user.photoURL,
+    date: firebase.firestore.Timestamp.now(),
+
     business_name: '',
     business_type: '',
-    account_type: 'pet_parent',
+    account_type: 'pet_professional',
     rating: 0,
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formData);
+    props.postProfileAPI(formData);
   };
 
   return (
@@ -52,7 +61,7 @@ const PetProfessioalProfile = (props) => {
               required
             />
           </div>
-          <SubmitButton type="submit">Create Account!</SubmitButton>
+          <SubmitButton type="submit" onSubmit={handleSubmit}>Create Account!</SubmitButton>
         </form>
       </CommonCard>
     </Container>
@@ -173,7 +182,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  //getArticles: () => dispatch(getArticlesAPI()),
+  postProfileAPI: (formData) => dispatch(postProfileAPI(formData)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PetProfessioalProfile);

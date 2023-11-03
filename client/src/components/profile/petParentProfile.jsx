@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { postProfileAPI } from '../../actions';
+import firebase from 'firebase/compat/app';
 
 const PetParentProfile = (props) => {
   const [formData, setFormData] = useState({
+    user_email : props.user.email,
+    user_name: props.user.displayName,
+    user_photo: props.user.photoURL,
+    date: firebase.firestore.Timestamp.now(),
     pets_name: '',
     pets_breed: '',
     pets_age: '',
@@ -12,6 +18,8 @@ const PetParentProfile = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formData);
+    props.postProfileAPI(formData);
   };
 
   return (
@@ -185,7 +193,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  //getArticles: () => dispatch(getArticlesAPI()),
+  postProfileAPI: (formData) => dispatch(postProfileAPI(formData)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PetParentProfile);

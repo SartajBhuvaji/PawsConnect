@@ -25,8 +25,10 @@ const Header =(props) =>{
                             <img src="/images/nav-home.svg" alt="nav-home" />
                             <span>Home</span>
                         </NavLink>
-                        </NavList>
-                        <NavList>
+                        <NavLink to="/profile" exact activeClassName="active" className="button-link">
+                            <img src="/images/nav-home.svg" alt="nav-home" />
+                            <span>Profile</span>
+                        </NavLink>
                         <NavLink to="/jobs" exact activeClassName="active" className="button-link">
                             <img src="/images/nav-jobs.svg" alt="nav-jobs" />
                             <span>Jobs</span>

@@ -118,6 +118,47 @@ export function postArticleAPI(payload) {
     };
 }
 
+export function postProfileAPI(payload) {
+    return (dispatch) => {
+        dispatch(setLoading(true));
+
+        if(payload.account_type == 'pet_parent'){
+            db.collection('profile').add({
+                actor: {
+                    description: payload.user_email,
+                    title: payload.user_name,
+                    photo: payload.user_photo,
+                    date: payload.date,
+                },
+                profile: {
+                    account_type: 'pet_parent',
+                    pet_name: payload.pets_name,
+                    pet_breed: payload.pets_breed,
+                    pet_age: payload.pets_age,
+                },
+            });
+            dispatch(setLoading(false));
+        }
+        else if(payload.account_type == 'pet_professional'){
+            db.collection('profile').add({
+                actor: {
+                    description: payload.user_email,
+                    title: payload.user_name,
+                    photo: payload.user_photo,
+                    date: payload.date,
+                },
+                profile: {
+                    account_type: 'pet_professional',
+                    business_name: payload.business_name,
+                    business_type: payload.business_type,
+                    rating: payload.rating,
+                },
+            });
+            dispatch(setLoading(false));
+        }
+    }
+}
+
 
 //Need to make changes here
 export function postJobsAPI(payload) {
