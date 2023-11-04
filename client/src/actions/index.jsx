@@ -175,7 +175,7 @@ export function postJobsAPI(payload) {
             db.collection('jobs').add({
             actor: {
                 description: payload.user_email,
-                title: payload.user_name,
+                user_name: payload.user_name,
                 date: payload.date,
                 image: payload.user_photo,
             },
@@ -223,7 +223,7 @@ export function getProfileAPI(userEmail) {
           .onSnapshot((snapshot) => {
             const payload = snapshot.docs.map((doc) => doc.data());
             console.log(payload);
-            dispatch(setProfile(payload));
+            dispatch(getArticles(payload));
           });
       } catch (error) {
         console.error('Error fetching profile data:', error);

@@ -4,7 +4,7 @@ import PostJobs from "../postJobs/PostJobs";
 import {useState} from "react";
 import { Connect } from "react-redux";
 import { useEffect } from "react";
-import { getArticlesAPI } from "../../actions";
+import { getJobsAPI } from "../../actions";
 import ReactPlayer from "react-player";
 
 const Jobs = (props) => {
@@ -12,6 +12,8 @@ const Jobs = (props) => {
 
   useEffect(() => {
     props.getArticles();
+    console.log("jere");
+    console.log("stuff",props);
   }, []);
 
   const handleClick = (e) => {
@@ -34,12 +36,13 @@ const Jobs = (props) => {
   return (
     <>
     { 
+    
     props.articles.length === 0 ? 
     <p>There are no articles</p>
     :
     (<Container>
-    <Sharebox>
-    <div>
+      <Sharebox>
+      <div>
       {
       props.user && props.user.photoURL ? (  
         <img src={props.user.photoURL} alt="" />
@@ -51,86 +54,37 @@ const Jobs = (props) => {
     </div>
     </Sharebox>
 
-    <Content>
+
+      <Content> 
       {props.loading && <img src="/images/spin-loader.svg" alt="" />}
       {props.articles.length > 0 &&
       props.articles.map((article, key) => (  
-     
-      <Article key = {key}>
+
+        <Article key = {key}>
         <SharedActor>
-          <a>
-            <img src={article.actor.image} alt="" />
-            <div>
-              <span>{article.actor.title}</span>
-              {/* 
-              if Pet parent:
-                display:Pet parent of {Pet name} 
-              else:
-                display: Pet professional {Professional name}    
-                */}
-
-              <span>{article.actor.description}</span>
-              <span>{article.actor.date.toDate().toLocaleDateString()}</span>
-            </div>
-          </a>
-          <button>
-            <img src="/images/ellipsis.svg" alt="" />
-          </button>
+        <a>
+        <img src={article.actor.image} alt="" />
+        <div>
+          <span>{article.actor.title}</span>
+          <span>{article.actor.description}</span>
+          <span>{article.actor.date.toDate().toLocaleDateString()}</span>
+        </div>
+        </a>
         </SharedActor>
-        {
-          //console.log("description", article)
-        }
-        <Description>{article.video.description}</Description>
-        
-        
-        {
-          (article.video.sharedImg || article.video.video) && ( 
-            <SharedImg>
-              <a>
-                
-                { 
-                  !article.video.sharedImg && article.video.video ? 
-                  <ReactPlayer width={'100%'} url={article.video.video} /> 
-                  : article.video.sharedImg && <img src={article.video.sharedImg} alt="" />
-                }
-              </a>
-            </SharedImg>
-          )
-        }
+        <div>
+          <Description>
+          
+          <span>{article.job_post.job_title}</span>
+          <span>{article.job_post.job_description}</span>
+          <SocialCounts><span>{article.job_post.job_pay}</span></SocialCounts>
+          </Description>
+        </div>
 
-        <SocialCounts>
-          <li>
-            <button>
-              <img src="https://static-exp1.licdn.com/sc/h/d310t2g24pvdy4pt1jkedo4yb" alt="" />
-              <span>75</span>
-            </button>
-          </li>
-          {/* <li>
-            <a> comments</a>
-          </li> */}
-        </SocialCounts>
-        <SocialActions>
-          <button>
-            <img src="/images/like-icon.svg" alt="" />
-            <span>Like</span>
-          </button>
-          {/* <button>
-            <img src="/images/comment-icon.svg" alt="" />
-            <span>Comments</span>
-          </button>
-          <button>
-            <img src="/images/share-icon.svg" alt="" />
-            <span>Share</span>
-          </button>
-          <button>
-            <img src="/images/send-icon.svg" alt="" />
-            <span>Send</span>
-          </button> */}
-        </SocialActions>
-      </Article> ))}
+    
+
+        </Article> ))}
+        {/* <PostModal showModal={showModal} handleClick= {handleClick}/>  */}
       </Content>
-
-    <PostJobs showModal={showModal} handleClick= {handleClick}/>   
     </Container>
     )}
     </>
@@ -336,7 +290,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  getArticles: () => dispatch(getArticlesAPI()),
+  getArticles: () => dispatch(getJobsAPI()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Jobs);
