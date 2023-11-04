@@ -5,6 +5,7 @@ import firebase from 'firebase/compat/app';
 import { postJobsAPI } from "../../actions";
 
 const PostJobs = (props) => {
+    const [companyName, setcompanyName] = useState("");
     const [jobTitle, setjobTitle] = useState("");
     const [jobDescription, setjobDescription] = useState("");
     const [jobPay, setjobPay] = useState("");
@@ -33,10 +34,12 @@ const PostJobs = (props) => {
             return;
         }
         const payload = {
+            company_name: companyName,
             job_title: jobTitle,
             job_description: jobDescription,
             job_pay: jobPay,
 
+                
             user_email : props.user.email,
             user_name: props.user.displayName,
             user_photo: props.user.photoURL,
@@ -47,6 +50,7 @@ const PostJobs = (props) => {
 };
 
 const reset = (e) => {
+    setcompanyName("");
     setjobTitle("");
     setjobDescription("");
     setjobPay("");
@@ -73,141 +77,48 @@ return (
                         }
                         <span>{props.user.displayName ? props.user.displayName : "Name"}</span>
                     </UserInfo>
+                    <SmallEditor>
+                        <textarea value ={companyName} 
+                        placeholder="Company Name" 
+                        autoFocus={true} 
+                        onChange={(e)=>setcompanyName(e.target.value)}
+                        required>    
+                        </textarea>                 
+                    </SmallEditor>
+                    <SmallEditor>
+                        <textarea value ={jobTitle} 
+                        placeholder="Job Title" 
+                        autoFocus={true} 
+                        onChange={(e)=>setjobTitle(e.target.value)}
+                        required>    
+                        </textarea>                 
+                    </SmallEditor>
                     <Editor>
-                    <textarea value ={jobTitle} 
-                    placeholder="Job Title" 
-                    autoFocus={true} 
-                    onChange={(e)=>setjobTitle(e.target.value)}
-                    required
-                    
-                    >    
-                    </textarea>                 
-                </Editor>
-                <Editor>
-                    <textarea value ={jobDescription} 
-                    placeholder="Job Description" 
-                    autoFocus={true} 
-                    onChange={(e)=>setjobDescription(e.target.value)}
-                    required>    
-                    </textarea>                 
-                </Editor>
-                <Editor>
-                    <textarea value ={jobPay} 
-                    placeholder="Pay" 
-                    onChange={(e)=>setjobPay(e.target.value)}autoFocus={true} 
-                    required
-                    >    
-                    </textarea>                 
-                </Editor>
-                <PostButton disabled= {!editorText ? true: false} onClick={(event)=>postJob(event)}>Post</PostButton>
+                        <textarea value ={jobDescription} 
+                        placeholder="Job Description" 
+                        autoFocus={true} 
+                        onChange={(e)=>setjobDescription(e.target.value)}
+                        required>    
+                        </textarea>                 
+                    </Editor>
+                    <SmallEditor>
+                        <textarea value ={jobPay} 
+                        placeholder="Pay" 
+                        onChange={(e)=>setjobPay(e.target.value)}autoFocus={true} 
+                        required
+                        >    
+                        </textarea>                 
+                    </SmallEditor>
+                <PostButton disabled= {(!jobTitle && !jobDescription && !jobPay) ? true: false} onClick={(event)=>postJob(event)}>Post</PostButton>
                 </SharedContent>
-                </Content>
-                </Container>
+            </Content>
+            </Container>
 
     )}
      </>
     );
+};
 
-                    };
-
-
-// const handleSubmit = async (e) => {
-//         e.preventDefault();
-//         try {
-//           await props.postJobsAPI(formData);
-//           //window.location.href = '/home';
-//         } catch (error) {
-//           console.error('Error:', error);
-//         }
-//       };
-
-
-// const postJob = (e) => {
-//         console.log("postJob");
-//         e.preventDefault();
-//         if (e.target !== e.currentTarget) {
-//             return;
-//         }
-//         const payload = {
-//             job_title: props.job_title,
-//             job_description: props.job_description,
-//             job_pay: props.job_pay,
-
-//             user_email : props.user.email,
-//             user_name: props.user.displayName,
-//             user_photo: props.user.photoURL,
-//             timestamp: firebase.firestore.Timestamp.now(),
-//         };
-//         props.postJobsAPI(formData);
-//         reset(e);
-//     };
-    
-    // const reset  = (e) => {
-    //     //  setJobTitle("");
-    //     //  setJobDescription("");
-    //     //  setJobPay("");
-
-    // })
-    //     props.handleClick(e);
-
-    // }
-
-//     return (
-//         <>
-//         { props.showModal === "open" &&(
-//         <Container>
-//             <Content>
-//                 <Header>
-//                     <h2> Post a job</h2>
-//                 </Header>
-//                 <SharedContent>
-//                     <UserInfo>
-//                         {props.user.photoURL ? (
-//                         <img src={props.user.photoURL} alt="user" />
-//                         ) : (<img src="/images/user.svg" alt="user" />)    
-//                         }
-//                         <span>{props.user.displayName ? props.user.displayName : "Name"}</span>
-//                     </UserInfo>
-//                 <Editor>
-//                     <textarea value ={editorText} 
-//                     placeholder="Job Title" 
-//                     autoFocus={true} 
-//                     onChange={(e) => {setFormData({...formData,job_title: e.target.value});}}
-//                     required
-                    
-//                     >    
-//                     </textarea>                 
-//                 </Editor>
-//                 <Editor>
-//                     <textarea value ={editorText} 
-//                     placeholder="Job Description" 
-//                     autoFocus={true} 
-//                     onChange={(e) => {setFormData({...formData,job_description: e.target.value});}}
-//                     required>    
-//                     </textarea>                 
-//                 </Editor>
-//                 <Editor>
-//                     <textarea value ={editorText} 
-//                     placeholder="Pay" 
-//                     autoFocus={true} 
-//                     onChange={(e) => {setFormData({...formData,job_pay: e.target.value});}}
-//                     required
-//                     >    
-//                     </textarea>                 
-//                 </Editor>
-
-
-//                 </SharedContent>
-//                 <ShradedCreation>
-
-//                 <PostButton disabled= {!editorText ? true: false} onClick={(event)=>handleSubmit(event)}>Post</PostButton>
-//                 </ShradedCreation>
-//             </Content>
-//         </Container>
-//         )}
-//         </>
-//         );
-// };
 
 const Container = styled.div`
     position: fixed;
@@ -349,6 +260,23 @@ const Editor = styled.div`
         font-size: 16px;
     }
 `;  
+
+const SmallEditor = styled.div`
+    padding: 12px 24px;
+    textarea {
+        width: 100%;
+        min-height: 30px;
+        resize: none;
+        border-radius: 15px;
+        padding-left: 15px;
+        padding-top: 10px;
+        padding-right: 15px;
+    }
+    input {
+        width: 100%;
+        font-size: 16px;
+    }
+`; 
 
 const editorText = styled.div`
     padding: 12px 24px;

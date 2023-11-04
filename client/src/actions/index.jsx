@@ -180,6 +180,7 @@ export function postJobsAPI(payload) {
                 image: payload.user_photo,
             },
             job_post: {
+                company_name: payload.company_name,
                 job_title: payload.job_title,
                 job_description: payload.job_description,
                 job_pay: payload.job_pay,

@@ -44,9 +44,9 @@ const Jobs = (props) => {
       <div>
       {
       props.user && props.user.photoURL ? (  
-        <img src={props.user.photoURL} alt="" />
+        <img src={props.user.photoURL} alt="" border-radius="50%"/>
         ) : (
-          <img src="/images/user.svg" alt="" />
+          <img src="/images/user.svg" alt="" border-radius="20%" />
     )
     }
     <button onClick={handleClick} disabled={props.loading? true: false}>Post a job</button>
@@ -72,10 +72,10 @@ const Jobs = (props) => {
         </SharedActor>
         <div>
           <Description>
-          
-          <span>{article.job_post.job_title}</span>
-          <span>{article.job_post.job_description}</span>
-          <SocialCounts><span>{article.job_post.job_pay}</span></SocialCounts>
+          <CompanyName><spam>{article.job_post.company_name}</spam></CompanyName>
+          <JobTitle><span>{article.job_post.job_title}</span></JobTitle>
+          <JobDescription><span>{article.job_post.job_description}</span></JobDescription>
+          <JobPay><span>{article.job_post.job_pay}</span></JobPay>
           </Description>
         </div>
 
@@ -90,6 +90,34 @@ const Jobs = (props) => {
     </>
     )
 };
+
+const CompanyName = styled.div`
+  margin: 0 16px;
+  overflow: hidden;
+  color: rgba(0,0,0,0.9);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+`;
+
+
+const JobTitle = styled.div`
+  margin: 0 16px;
+  overflow: hidden;
+  color: rgba(0,0,0,0.9);
+  font-size: 20px;
+  font-weight: 700;
+  text-align: left;
+`;
+
+const JobDescription = styled.div`
+  margin: 0 16px;
+  overflow: hidden;
+  color: rgba(0,0,0,0.9);
+  font-size: 14px;
+  text-align: left;
+`;
+
 
 const Container = styled.div`
   grid-area: main;
@@ -234,7 +262,7 @@ const SharedImg = styled.div`
   }
 `;
 
-const SocialCounts = styled.ul`
+const JobPay = styled.ul`
   line-height: 1.3;
   display: flex;
   align-items: flex-start;
