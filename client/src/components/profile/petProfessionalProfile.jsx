@@ -18,10 +18,14 @@ const PetProfessioalProfile = (props) => {
     rating: 0,
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    props.postProfileAPI(formData);
+    try {
+      await props.postProfileAPI(formData);
+      window.location.href = '/home';
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
@@ -70,6 +74,7 @@ const PetProfessioalProfile = (props) => {
 
 const Container = styled.div`
   grid-area: main;
+  padding: 20px;
 `;
 
 const Title = styled.h1`
@@ -81,7 +86,7 @@ const CommonCard = styled.div`
   text-align: left;
   padding-left: 20px;
   padding-top: 20px;
-  padding-right: 20px;
+  padding-right: 80px;
   padding-bottom: 20px;
   margin-bottom: 20px;
   background-color: #f7f7f7;
@@ -94,6 +99,8 @@ const TitleBox = styled(CommonCard)`
   flex-direction: column;
   color: #958b7b;
   margin: 0 0 20px;
+  margin-top: 80px;
+  
   background: white;
   div {
     button {
