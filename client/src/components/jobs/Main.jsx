@@ -5,7 +5,6 @@ import {useState} from "react";
 import { Connect } from "react-redux";
 import { useEffect } from "react";
 import { getJobsAPI } from "../../actions";
-import ReactPlayer from "react-player";
 
 const Jobs = (props) => {
   const [showModal, setShowModal] = useState("close");
@@ -85,6 +84,7 @@ const Jobs = (props) => {
         </Article> ))}
         {/* <PostModal showModal={showModal} handleClick= {handleClick}/>  */}
       </Content>
+      <PostJobs showModal={showModal} handleClick= {handleClick}/>   
     </Container>
     )}
     </>

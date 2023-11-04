@@ -1,32 +1,125 @@
 import styled from "styled-components";
 import {useState} from 'react';
-import ReactPlayer from "react-player";
 import { connect } from "react-redux";
 import firebase from 'firebase/compat/app';
 import { postJobsAPI } from "../../actions";
 
 const PostJobs = (props) => {
+    const [jobTitle, setjobTitle] = useState("");
+    const [jobDescription, setjobDescription] = useState("");
+    const [jobPay, setjobPay] = useState("");
 
-    const [formData, setFormData] = useState({
-        user_email : props.user.email,
-        user_name: props.user.displayName,
-        user_photo: props.user.photoURL,
-        date: firebase.firestore.Timestamp.now(),
+    // const [formData, setFormData] = useState({
+    //     job_title: '',
+    //     job_description: '',
+    //     job_pay: '',
 
-        job_title: '',
-        job_description: '',
-        job_pay: '',
-      });
+    //     user_email : props.user.email,
+    //     user_name: props.user.displayName,
+    //     user_photo: props.user.photoURL,
+    //     date: firebase.firestore.Timestamp.now(),
+    //   });
 
-const handleSubmit = async (e) => {
+    // const switchAssetArea = (area) => {
+    //     setjobTitle("");
+    //     setjobDescription("");
+    //     setjobPay("");
+    // };
+
+
+    const postJob = (e) => {
         e.preventDefault();
-        try {
-          await props.postJobsAPI(formData);
-          //window.location.href = '/home';
-        } catch (error) {
-          console.error('Error:', error);
+        if (e.target !== e.currentTarget) {
+            return;
         }
-      };
+        const payload = {
+            job_title: jobTitle,
+            job_description: jobDescription,
+            job_pay: jobPay,
+
+            user_email : props.user.email,
+            user_name: props.user.displayName,
+            user_photo: props.user.photoURL,
+            date: firebase.firestore.Timestamp.now(),
+            };
+        props.postJobsAPI(payload);
+        reset(e);
+};
+
+const reset = (e) => {
+    setjobTitle("");
+    setjobDescription("");
+    setjobPay("");
+
+    props.handleClick(e);
+}
+
+return (
+    <>
+    { props.showModal === "open" &&(
+          <Container>
+          <Content>
+              <Header>
+                  <h2> Create a post</h2>
+                  <button onClick={(event)=> reset(event)}>
+                  <img src="/images/close-icon.svg" alt="share-video" width="28" height="28"/>    
+                  </button>
+              </Header>
+              <SharedContent>
+                    <UserInfo>
+                        {props.user.photoURL ? (
+                        <img src={props.user.photoURL} alt="user" />
+                        ) : (<img src="/images/user.svg" alt="user" />)    
+                        }
+                        <span>{props.user.displayName ? props.user.displayName : "Name"}</span>
+                    </UserInfo>
+                    <Editor>
+                    <textarea value ={editorText} 
+                    placeholder="Job Title" 
+                    autoFocus={true} 
+                    onChange={(e)=>setjobTitle(e.target.value)}
+                    required
+                    
+                    >    
+                    </textarea>                 
+                </Editor>
+                <Editor>
+                    <textarea value ={editorText} 
+                    placeholder="Job Description" 
+                    autoFocus={true} 
+                    onChange={(e)=>setjobDescription(e.target.value)}
+                    required>    
+                    </textarea>                 
+                </Editor>
+                <Editor>
+                    <textarea value ={editorText} 
+                    placeholder="Pay" 
+                    onChange={(e)=>setjobPay(e.target.value)}autoFocus={true} 
+                    required
+                    >    
+                    </textarea>                 
+                </Editor>
+                <PostButton disabled= {!editorText ? true: false} onClick={(event)=>postJob(event)}>Post</PostButton>
+                </SharedContent>
+                </Content>
+                </Container>
+
+    )}
+     </>
+    );
+
+                    };
+
+
+// const handleSubmit = async (e) => {
+//         e.preventDefault();
+//         try {
+//           await props.postJobsAPI(formData);
+//           //window.location.href = '/home';
+//         } catch (error) {
+//           console.error('Error:', error);
+//         }
+//       };
 
 
 // const postJob = (e) => {
@@ -49,74 +142,72 @@ const handleSubmit = async (e) => {
 //         reset(e);
 //     };
     
-    const reset  = (e) => {
-        // setJobTitle("");
-        // setJobDescription("");
-        // setJobPay("");
+    // const reset  = (e) => {
+    //     //  setJobTitle("");
+    //     //  setJobDescription("");
+    //     //  setJobPay("");
 
-        props.handleClick(e);
+    // })
+    //     props.handleClick(e);
 
-    }
+    // }
 
-    return (
-        <>
-        { props.showModal === "open" &&(
-        <Container>
-            <Content>
-                <Header>
-                    <h2> Post a job</h2>
-                    <button onClick={(event)=> reset(event)}>
-                    <img src="/images/close-icon.svg" alt="share-video" width="28" height="28"/>    
-                    </button>
-                </Header>
-                <SharedContent>
-                    <UserInfo>
-                        {props.user.photoURL ? (
-                        <img src={props.user.photoURL} alt="user" />
-                        ) : (<img src="/images/user.svg" alt="user" />)    
-                        }
-                        <span>{props.user.displayName ? props.user.displayName : "Name"}</span>
-                    </UserInfo>
-                <Editor>
-                    <textarea value ={editorText} 
-                    placeholder="Job Title" 
-                    autoFocus={true} 
-                    onChange={(e) => {setFormData({...formData,job_title: e.target.value});}}
-                    required
+//     return (
+//         <>
+//         { props.showModal === "open" &&(
+//         <Container>
+//             <Content>
+//                 <Header>
+//                     <h2> Post a job</h2>
+//                 </Header>
+//                 <SharedContent>
+//                     <UserInfo>
+//                         {props.user.photoURL ? (
+//                         <img src={props.user.photoURL} alt="user" />
+//                         ) : (<img src="/images/user.svg" alt="user" />)    
+//                         }
+//                         <span>{props.user.displayName ? props.user.displayName : "Name"}</span>
+//                     </UserInfo>
+//                 <Editor>
+//                     <textarea value ={editorText} 
+//                     placeholder="Job Title" 
+//                     autoFocus={true} 
+//                     onChange={(e) => {setFormData({...formData,job_title: e.target.value});}}
+//                     required
                     
-                    >    
-                    </textarea>                 
-                </Editor>
-                <Editor>
-                    <textarea value ={editorText} 
-                    placeholder="Job Description" 
-                    autoFocus={true} 
-                    onChange={(e) => {setFormData({...formData,job_description: e.target.value});}}
-                    required>    
-                    </textarea>                 
-                </Editor>
-                <Editor>
-                    <textarea value ={editorText} 
-                    placeholder="Pay" 
-                    autoFocus={true} 
-                    onChange={(e) => {setFormData({...formData,job_pay: e.target.value});}}
-                    required
-                    >    
-                    </textarea>                 
-                </Editor>
+//                     >    
+//                     </textarea>                 
+//                 </Editor>
+//                 <Editor>
+//                     <textarea value ={editorText} 
+//                     placeholder="Job Description" 
+//                     autoFocus={true} 
+//                     onChange={(e) => {setFormData({...formData,job_description: e.target.value});}}
+//                     required>    
+//                     </textarea>                 
+//                 </Editor>
+//                 <Editor>
+//                     <textarea value ={editorText} 
+//                     placeholder="Pay" 
+//                     autoFocus={true} 
+//                     onChange={(e) => {setFormData({...formData,job_pay: e.target.value});}}
+//                     required
+//                     >    
+//                     </textarea>                 
+//                 </Editor>
 
 
-                </SharedContent>
-                <ShradedCreation>
+//                 </SharedContent>
+//                 <ShradedCreation>
 
-                <PostButton disabled= {!editorText ? true: false} onClick={(event)=>handleSubmit(event)}>Post</PostButton>
-                </ShradedCreation>
-            </Content>
-        </Container>
-        )}
-        </>
-        );
-};
+//                 <PostButton disabled= {!editorText ? true: false} onClick={(event)=>handleSubmit(event)}>Post</PostButton>
+//                 </ShradedCreation>
+//             </Content>
+//         </Container>
+//         )}
+//         </>
+//         );
+// };
 
 const Container = styled.div`
     position: fixed;
