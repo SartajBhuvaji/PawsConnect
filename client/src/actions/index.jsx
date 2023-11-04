@@ -1,6 +1,6 @@
 import {auth, provider, storage} from '../firebase';
 import db from '../firebase';
-import { SET_USER, SET_LOADING_STATUS, GET_ARTICLES } from './actionType';
+import { SET_USER, SET_LOADING_STATUS, GET_ARTICLES, SET_PROFILE } from './actionType';
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export const setUser = (payload) =>({
@@ -16,6 +16,13 @@ export const setLoading = (status) =>({
 export const getArticles = (payload) =>({
     type: GET_ARTICLES,
     payload: payload,
+});
+
+// Define an action type and action creator to set the profile data in Redux
+
+export const setProfile = (data) => ({
+  type: SET_PROFILE,
+  data,
 });
 
 export function signInAPI(){
@@ -162,67 +169,23 @@ export function postProfileAPI(payload) {
 
 //Need to make changes here
 export function postJobsAPI(payload) {
+    console.log("In postJobsAPI");
     return (dispatch) => {
         dispatch(setLoading(true));
-
-        if (payload.image !== '') {
-            const storageRef = ref(storage, 'user-jobs/' + payload.image.name); // Get a reference to the storage path
-
-            uploadBytes(storageRef, payload.image).then(async (snapshot) => {
-            const downloadURL = await getDownloadURL(snapshot.ref);
-
-                db.collection('jobs').add({
-                    actor: {
-                        description: payload.user.email,
-                        title: payload.user.displayName,
-                        date: payload.timestamp,
-                        image: payload.user.photoURL,
-                    },
-                    video: {
-                        video: payload.video,
-                        sharedImg: downloadURL,
-                        comments: 0,
-                        description: payload.description,
+            db.collection('jobs').add({
+            actor: {
+                description: payload.user_email,
+                title: payload.user_name,
+                date: payload.date,
+                image: payload.user_photo,
+            },
+            job_post: {
+                job_title: payload.job_title,
+                job_description: payload.job_description,
+                job_pay: payload.job_pay,
                     },
                 });
-                dispatch(setLoading(false));
-            }).catch(error => console.log(error.code));
-        }
-        else if (payload.video) {
-            
-            db.collection('articles').add({
-                actor: {
-                    description: payload.user.email,
-                    title: payload.user.displayName,
-                    date: payload.timestamp,
-                    image: payload.user.photoURL,
-                },
-                video: {
-                    video: payload.video,
-                    sharedImg: '',
-                    comments: 0,
-                    description: payload.description,
-                },
-            });
-            dispatch(setLoading(false));
-        }
-        else { //just text
-            db.collection('jobs').add({
-                actor: {
-                    description: payload.user.email,
-                    title: payload.user.displayName,
-                    date: payload.timestamp,
-                    image: payload.user.photoURL,
-                },
-                video: {
-                    video: '',
-                    sharedImg: '',
-                    comments: 0,
-                    description: payload.description,
-                },
-            });
-            dispatch(setLoading(false));
-        }
+            dispatch(setLoading(false));    
     };
 }
 
@@ -251,3 +214,20 @@ export function getJobsAPI() {
         });
     };
 }
+
+export function getProfileAPI(userEmail) {
+    return (dispatch) => {
+      try {
+        db.collection('profile')
+          .where('actor.description', '==', userEmail)
+          .onSnapshot((snapshot) => {
+            const payload = snapshot.docs.map((doc) => doc.data());
+            console.log(payload);
+            dispatch(setProfile(payload));
+          });
+      } catch (error) {
+        console.error('Error fetching profile data:', error);
+        // Handle error or dispatch an error action if needed
+      }
+    };
+  }

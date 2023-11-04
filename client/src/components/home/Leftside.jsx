@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import { connect } from "react-redux";
+import firebase from 'firebase/compat/app';
+import {getProfileAPI} from '../../actions';
 
 const Leftside = (props) => {
+
   return (
     <Container>
       <ArtCard>
@@ -16,6 +19,7 @@ const Leftside = (props) => {
           </a>
         </UserInfo>
         <Widget>
+
           <a>
             <div>
               <span>Pet's Name</span>

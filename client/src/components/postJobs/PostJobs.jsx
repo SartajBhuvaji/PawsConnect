@@ -3,51 +3,56 @@ import {useState} from 'react';
 import ReactPlayer from "react-player";
 import { connect } from "react-redux";
 import firebase from 'firebase/compat/app';
-import { postArticleAPI } from "../../actions";
+import { postJobsAPI } from "../../actions";
 
-const PostModal = (props) => {
-    const [editorText, setEditorText] = useState("");
-    const [shareImage, setShareImage] = useState("");
-    const [videoLink, setVideoLink] = useState("");
-    const [assetArea, setAssetArea] = useState("");
+const PostJobs = (props) => {
 
-    const handleChange = (e) => {
-        const image = e.target.files[0];
-        if (image === "" || image === undefined) {
-            alert(`not an image, the file is a ${typeof image}`);
-            return;
-        }
-        setShareImage(image);
-    };
+    const [formData, setFormData] = useState({
+        user_email : props.user.email,
+        user_name: props.user.displayName,
+        user_photo: props.user.photoURL,
+        date: firebase.firestore.Timestamp.now(),
 
-    const switchAssetArea = (area) => {
-        setShareImage("");
-        setVideoLink("");
-        setAssetArea(area);
-    };
+        job_title: '',
+        job_description: '',
+        job_pay: '',
+      });
 
-    const postArticle = (e) => {
+const handleSubmit = async (e) => {
         e.preventDefault();
-        if (e.target !== e.currentTarget) {
-            return;
+        try {
+          await props.postJobsAPI(formData);
+          //window.location.href = '/home';
+        } catch (error) {
+          console.error('Error:', error);
         }
-        const payload = {
-            image: shareImage,
-            video: videoLink,
+      };
 
-            user: props.user,
-            description: editorText,
-            timestamp: firebase.firestore.Timestamp.now(),
-        };
-        props.postArticleAPI(payload);
-        reset(e);
-    };
+
+// const postJob = (e) => {
+//         console.log("postJob");
+//         e.preventDefault();
+//         if (e.target !== e.currentTarget) {
+//             return;
+//         }
+//         const payload = {
+//             job_title: props.job_title,
+//             job_description: props.job_description,
+//             job_pay: props.job_pay,
+
+//             user_email : props.user.email,
+//             user_name: props.user.displayName,
+//             user_photo: props.user.photoURL,
+//             timestamp: firebase.firestore.Timestamp.now(),
+//         };
+//         props.postJobsAPI(formData);
+//         reset(e);
+//     };
     
     const reset  = (e) => {
-        setEditorText("");
-        setShareImage("");
-        setVideoLink("");
-        setAssetArea("");
+        // setJobTitle("");
+        // setJobDescription("");
+        // setJobPay("");
 
         props.handleClick(e);
 
@@ -76,21 +81,27 @@ const PostModal = (props) => {
                     <textarea value ={editorText} 
                     placeholder="Job Title" 
                     autoFocus={true} 
-                    onChange={(e)=>setEditorText(e.target.value)}>    
+                    onChange={(e) => {setFormData({...formData,job_title: e.target.value});}}
+                    required
+                    
+                    >    
                     </textarea>                 
                 </Editor>
                 <Editor>
                     <textarea value ={editorText} 
                     placeholder="Job Description" 
                     autoFocus={true} 
-                    onChange={(e)=>setEditorText(e.target.value)}>    
+                    onChange={(e) => {setFormData({...formData,job_description: e.target.value});}}
+                    required>    
                     </textarea>                 
                 </Editor>
                 <Editor>
                     <textarea value ={editorText} 
                     placeholder="Pay" 
                     autoFocus={true} 
-                    onChange={(e)=>setEditorText(e.target.value)}>    
+                    onChange={(e) => {setFormData({...formData,job_pay: e.target.value});}}
+                    required
+                    >    
                     </textarea>                 
                 </Editor>
 
@@ -98,7 +109,7 @@ const PostModal = (props) => {
                 </SharedContent>
                 <ShradedCreation>
 
-                <PostButton disabled= {!editorText ? true: false} onClick={(event)=>postArticle(event)}>Post</PostButton>
+                <PostButton disabled= {!editorText ? true: false} onClick={(event)=>handleSubmit(event)}>Post</PostButton>
                 </ShradedCreation>
             </Content>
         </Container>
@@ -279,8 +290,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    postArticleAPI: (payload) => dispatch(postArticleAPI(payload)),
+    postJobsAPI: (payload) => dispatch(postJobsAPI(payload)),
    // signOut: () => dispatch(signOutAPI()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostModal);
+export default connect(mapStateToProps, mapDispatchToProps)(PostJobs);
