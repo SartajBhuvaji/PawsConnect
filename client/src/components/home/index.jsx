@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
-import Leftside from "./Leftside";
+import Leftside from "../leftSide/Leftside";
 import Main from "./Main";
 import Rightside from "./Rightside";
 import { Navigate } from 'react-router-dom';
