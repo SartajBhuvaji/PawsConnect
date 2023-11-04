@@ -74,7 +74,7 @@ return (
                         <span>{props.user.displayName ? props.user.displayName : "Name"}</span>
                     </UserInfo>
                     <Editor>
-                    <textarea value ={editorText} 
+                    <textarea value ={jobTitle} 
                     placeholder="Job Title" 
                     autoFocus={true} 
                     onChange={(e)=>setjobTitle(e.target.value)}
@@ -84,7 +84,7 @@ return (
                     </textarea>                 
                 </Editor>
                 <Editor>
-                    <textarea value ={editorText} 
+                    <textarea value ={jobDescription} 
                     placeholder="Job Description" 
                     autoFocus={true} 
                     onChange={(e)=>setjobDescription(e.target.value)}
@@ -92,7 +92,7 @@ return (
                     </textarea>                 
                 </Editor>
                 <Editor>
-                    <textarea value ={editorText} 
+                    <textarea value ={jobPay} 
                     placeholder="Pay" 
                     onChange={(e)=>setjobPay(e.target.value)}autoFocus={true} 
                     required
