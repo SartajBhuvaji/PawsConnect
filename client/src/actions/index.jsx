@@ -18,8 +18,6 @@ export const getArticles = (payload) =>({
     payload: payload,
 });
 
-// Define an action type and action creator to set the profile data in Redux
-
 export const setProfile = (data) => ({
   type: SET_PROFILE,
   data,
@@ -31,7 +29,6 @@ export function signInAPI(){
         auth
         .signInWithPopup(provider)
         .then((payload) =>{
-        //console.log(payload); // payload.user
         dispatch(setUser(payload));        
 
         })
@@ -57,8 +54,6 @@ export function signOutAPI(){
         .catch((error) => alert(error.message));
     };
 }
-
-// import { getStorage, ref, uploadBytes } from "firebase/storage";
 
 export function postArticleAPI(payload) {
     return (dispatch) => {
@@ -166,8 +161,6 @@ export function postProfileAPI(payload) {
     }
 }
 
-
-//Need to make changes here
 export function postJobsAPI(payload) {
     console.log("In postJobsAPI");
     return (dispatch) => {

@@ -69,8 +69,8 @@ const Main = (props) => {
                 display: Pet professional {Professional name}    
                 */}
 
-              <span>{article.actor.description}</span>
-              <span>{article.actor.date.toDate().toLocaleDateString()}</span>
+              <span>{article.actor?.description}</span>
+              <span>{article.actor?.date.toDate().toLocaleDateString()}</span>
             </div>
           </a>
           <button>
@@ -80,18 +80,18 @@ const Main = (props) => {
         {
           //console.log("description", article)
         }
-        <Description>{article.video.description}</Description>
+        <Description>{article.video?.description}</Description>
         
         
         {
-          (article.video.sharedImg || article.video.video) && ( 
+          (article.video?.sharedImg || article.video?.video) && ( 
             <SharedImg>
               <a>
                 
                 { 
-                  !article.video.sharedImg && article.video.video ? 
-                  <ReactPlayer width={'100%'} url={article.video.video} /> 
-                  : article.video.sharedImg && <img src={article.video.sharedImg} alt="" />
+                  !article.video?.sharedImg && article.video?.video ? 
+                  <ReactPlayer width={'100%'} url={article.video?.video} /> 
+                  : article.video?.sharedImg && <img src={article.video?.sharedImg} alt="" />
                 }
               </a>
             </SharedImg>
@@ -273,10 +273,12 @@ const SharedImg = styled.div`
   display: block;
   position: relative;
   background-color: #f9fafb;
+  
   img {
     object-fit: contain;
-    width: 100%;
+    width: 98%;
     height: 100%;
+    
   }
 `;
 

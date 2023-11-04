@@ -46,7 +46,7 @@ const Jobs = (props) => {
       props.user && props.user.photoURL ? (  
         <img src={props.user.photoURL} alt="" border-radius="50%"/>
         ) : (
-          <img src="/images/user.svg" alt="" border-radius="20%" />
+          <img src="/images/user.svg" alt="" style={{borderRadius: "20%"}} />
     )
     }
     <button onClick={handleClick} disabled={props.loading? true: false}>Post a job</button>
@@ -62,7 +62,7 @@ const Jobs = (props) => {
         <Article key = {key}>
         <SharedActor>
         <a>
-        <img src={article.actor.image} alt="" />
+        <img src={article.actor.image} alt="" style={{borderRadius: "50%"}}  />
         <div>
           <span>{article.actor.title}</span>
           <span>{article.actor.description}</span>
@@ -72,10 +72,10 @@ const Jobs = (props) => {
         </SharedActor>
         <div>
           <Description>
-          <CompanyName><spam>{article.job_post.company_name}</spam></CompanyName>
-          <JobTitle><span>{article.job_post.job_title}</span></JobTitle>
-          <JobDescription><span>{article.job_post.job_description}</span></JobDescription>
-          <JobPay><span>{article.job_post.job_pay}</span></JobPay>
+          <CompanyName><spam>{article.job_post?.company_name}</spam></CompanyName>
+          <JobTitle><span>{article.job_post?.job_title}</span></JobTitle>
+          <JobDescription><span>{article.job_post?.job_description}</span></JobDescription>
+          <JobPay><span>{article.job_post?.job_pay}</span></JobPay>
           </Description>
         </div>
 

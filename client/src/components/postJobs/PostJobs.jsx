@@ -10,24 +10,6 @@ const PostJobs = (props) => {
     const [jobDescription, setjobDescription] = useState("");
     const [jobPay, setjobPay] = useState("");
 
-    // const [formData, setFormData] = useState({
-    //     job_title: '',
-    //     job_description: '',
-    //     job_pay: '',
-
-    //     user_email : props.user.email,
-    //     user_name: props.user.displayName,
-    //     user_photo: props.user.photoURL,
-    //     date: firebase.firestore.Timestamp.now(),
-    //   });
-
-    // const switchAssetArea = (area) => {
-    //     setjobTitle("");
-    //     setjobDescription("");
-    //     setjobPay("");
-    // };
-
-
     const postJob = (e) => {
         e.preventDefault();
         if (e.target !== e.currentTarget) {
@@ -38,7 +20,6 @@ const PostJobs = (props) => {
             job_title: jobTitle,
             job_description: jobDescription,
             job_pay: jobPay,
-
                 
             user_email : props.user.email,
             user_name: props.user.displayName,
