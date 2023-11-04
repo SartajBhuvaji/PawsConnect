@@ -66,6 +66,7 @@ const PetProfessioalProfile = (props) => {
             />
           </div>
           <SubmitButton type="submit" onSubmit={handleSubmit}>Create Account!</SubmitButton>
+          <SubmitButton type="submit" onClick={() => window.location.href = '/profile'}>Back</SubmitButton>
         </form>
       </CommonCard>
     </Container>
@@ -171,6 +172,7 @@ const SubmitButton = styled.button`
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
+  margin-right: 20px;
   cursor: pointer;
   font-weight: 600;
   margin-top: 20px;

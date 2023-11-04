@@ -23,6 +23,7 @@ const Profile = (props) => {
                     
                     <AccountChoice />
                 </Layout>
+                <SubmitButton type="submit" onClick={() => window.location.href = '/home'}>Back</SubmitButton>
             </Container>
     )
 }
@@ -60,7 +61,8 @@ const Section = styled.section`
          color: #434649;
          font-weight: 600;
      }
-`
+`;
+
 const Layout = styled.div`
     display: grid;
     grid-template-areas: "leftside main rightside";
@@ -69,7 +71,24 @@ const Layout = styled.div`
     row-gap: 25px;
     margin: 25px 0;
          
-`
+`;
+
+
+const SubmitButton = styled.button`
+  background-color: #70b5f9;
+  color: white;
+  border: none;
+  margin-right: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 20px;
+
+  :hover {
+    background-color: #5a9ee6;
+  }
+`;
 const mapStateToProps = (state) => {
     return {
         user: state.userState.user,
