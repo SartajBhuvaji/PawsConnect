@@ -13,8 +13,7 @@ const Home = (props) => {
                 {
                     !props.user && <Navigate to="/" />
                 }
-                <Section>
-                    
+                <Section>                   
                                     
                 </Section>
                 <Layout>

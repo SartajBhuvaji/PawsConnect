@@ -196,7 +196,6 @@ export function getArticlesAPI() {
     };
 }
 
-//Need to make changes here
 export function getJobsAPI() {
     return (dispatch) => {
         let payload;
@@ -209,13 +208,17 @@ export function getJobsAPI() {
     };
 }
 
-export function getProfileAPI(userEmail) {
+
+//Need to make changes here
+export function getProfileAPI(user_email) {
+    console.log("In getProfileAPI",user_email);
     return (dispatch) => {
       try {
         db.collection('profile')
-          .where('actor.description', '==', userEmail)
+          .where('actor.description', '==', "")
           .onSnapshot((snapshot) => {
             const payload = snapshot.docs.map((doc) => doc.data());
+
             console.log(payload);
             dispatch(getArticles(payload));
           });

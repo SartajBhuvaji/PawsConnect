@@ -1,7 +1,18 @@
 import styled from "styled-components";
 import { connect } from "react-redux";
+import firebase from 'firebase/compat/app';
+import { useEffect } from "react";
+import { getProfileAPI } from "../../actions";
 
+var email = null;
 const Leftside = (props) => {
+  useEffect(() => {
+    props.getUser(props.user.email);
+    console.log("left side");
+    console.log("left side props",props);
+    email = props.user.email;
+  }, []);
+  
   return (
     <Container>
       <ArtCard>
@@ -194,4 +205,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Leftside);
+const mapDispatchToProps = (dispatch) => ({
+  getUser: () => dispatch(getProfileAPI(email? email: '')),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Leftside);
