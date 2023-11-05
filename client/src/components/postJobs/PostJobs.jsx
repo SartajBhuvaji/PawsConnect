@@ -75,13 +75,13 @@ return (
                         </textarea>                 
                     </SmallEditor>
                     <Editor>
-                    <textarea
+                    <textarea multiline 
                         value={jobDescription}
                         placeholder="Job Description"
                         autoFocus={true}
                         onChange={(e) => setjobDescription(e.target.value)}
                         required
-                        style={{ whiteSpace: 'pre-wrap' }}
+                        style={{ whiteSpace: 'pre-line' }}
                     >
                     </textarea>
                     </Editor>
