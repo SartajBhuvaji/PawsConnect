@@ -45,7 +45,7 @@ return (
           <Container>
           <Content>
               <Header>
-                  <h2> Create a post</h2>
+                  <h2> Create a job posting</h2>
                   <button onClick={(event)=> reset(event)}>
                   <img src="/images/close-icon.svg" alt="share-video" width="28" height="28"/>    
                   </button>
@@ -75,12 +75,15 @@ return (
                         </textarea>                 
                     </SmallEditor>
                     <Editor>
-                        <textarea value ={jobDescription} 
-                        placeholder="Job Description" 
-                        autoFocus={true} 
-                        onChange={(e)=>setjobDescription(e.target.value)}
-                        required>    
-                        </textarea>                 
+                    <textarea
+                        value={jobDescription}
+                        placeholder="Job Description"
+                        autoFocus={true}
+                        onChange={(e) => setjobDescription(e.target.value)}
+                        required
+                        style={{ whiteSpace: 'pre-wrap' }}
+                    >
+                    </textarea>
                     </Editor>
                     <SmallEditor>
                         <textarea value ={jobPay} 

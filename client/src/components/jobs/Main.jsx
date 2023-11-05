@@ -56,17 +56,17 @@ const Jobs = (props) => {
 
       <Content> 
       {props.loading && <img src="/images/spin-loader.svg" alt="" />}
-      {props.articles.length > 0 &&
-      props.articles.map((article, key) => (  
+      {props.articles?.length > 0 &&
+      props.articles?.map((article, key) => (  
 
         <Article key = {key}>
         <SharedActor>
         <a>
-        <img src={article.actor.image} alt="" style={{borderRadius: "50%"}}  />
+        <img src={article.actor?.image} alt="" style={{borderRadius: "50%"}}  />
         <div>
-          <span>{article.actor.title}</span>
-          <span>{article.actor.description}</span>
-          <span>{article.actor.date.toDate().toLocaleDateString()}</span>
+          <span>{props.user?.displayName}</span>
+          <span>{props.user?.email}</span>
+          <span>{article.actor?.date.toDate().toLocaleDateString()}</span>
         </div>
         </a>
         </SharedActor>
@@ -197,7 +197,8 @@ const SharedActor = styled.div`
   padding-right: 40px;
   flex-wrap: nowrap;
   padding: 12px 16px 0;
-  margin-bottom: 8px;
+  margin-bottom: 10px; /* Adjust the margin as needed */
+  // border-bottom: 1px solid grey;
   align-items: center;
   display: flex;
   a {

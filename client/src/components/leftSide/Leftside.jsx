@@ -6,12 +6,6 @@ import { getProfileAPI } from "../../actions";
 
 var email = null;
 const Leftside = (props) => {
-  useEffect(() => {
-    props.getUser(props.user.email);
-    console.log("left side");
-    console.log("left side props",props);
-    email = props.user.email;
-  }, []);
   
   return (
     <Container>
