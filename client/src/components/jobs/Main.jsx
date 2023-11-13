@@ -11,8 +11,8 @@ const Jobs = (props) => {
 
   useEffect(() => {
     props.getArticles();
-    console.log("jere");
-    console.log("stuff",props);
+    // console.log("jere");
+    // console.log("stuff",props);
   }, []);
 
   const handleClick = (e) => {

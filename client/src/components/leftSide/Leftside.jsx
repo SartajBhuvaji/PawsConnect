@@ -6,6 +6,12 @@ import { getProfileAPI } from "../../actions";
 
 var email = null;
 const Leftside = (props) => {
+
+  useEffect(() => {
+    props.getProfile(props.user?.email);
+    //console.log("jere",props.user?.email);
+    console.log("stuff- >",props);
+  },[props.user?.email]);
   
   return (
     <Container>
@@ -15,6 +21,7 @@ const Leftside = (props) => {
           <a>
             <Photo />
             <Link>Welcome, {props.user ? props.user.displayName: ''}</Link>
+
           </a>
           <a>
             {/* {To be replaced by account type} */}
@@ -200,7 +207,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  getUser: () => dispatch(getProfileAPI(email? email: '')),
+  getProfile: (email) => dispatch(getProfileAPI(email)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Leftside);

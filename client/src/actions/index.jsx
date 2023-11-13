@@ -124,7 +124,7 @@ export function postProfileAPI(payload) {
     return (dispatch) => {
         dispatch(setLoading(true));
 
-        if(payload.account_type == 'pet_parent'){
+        if(payload.account_type === 'pet_parent'){
             db.collection('profile').add({
                 actor: {
                     description: payload.user_email,
@@ -141,7 +141,7 @@ export function postProfileAPI(payload) {
             });
             dispatch(setLoading(false));
         }
-        else if(payload.account_type == 'pet_professional'){
+        else if(payload.account_type === 'pet_professional'){
             db.collection('profile').add({
                 actor: {
                     description: payload.user_email,
@@ -211,20 +211,31 @@ export function getJobsAPI() {
 
 //Need to make changes here
 export function getProfileAPI(user_email) {
-    console.log("In getProfileAPI",user_email);
     return (dispatch) => {
       try {
-        db.collection('profile')
-          .where('actor.description', '==', "")
-          .onSnapshot((snapshot) => {
-            const payload = snapshot.docs.map((doc) => doc.data());
-
-            console.log(payload);
-            dispatch(getArticles(payload));
-          });
+        let payload;
+        //console.log("In getProfileAPI email -->",user_email);
+        db.collection('profile').where('actor.description', '==', user_email).onSnapshot((snapshot) => {
+            payload = snapshot.docs.map((doc) => doc.data());
+            console.log("SENDING PAYLAOD", payload);
+            dispatch(setProfile(payload));
+        });
       } catch (error) {
-        console.error('Error fetching profile data:', error);
+        console.error('Error fetching profile data:');
         // Handle error or dispatch an error action if needed
       }
     };
   }
+
+// export function getProfileAPI(user_email){
+//     console.log("In getProfileAPI email -->",user_email);
+//     return (dispatch) => {
+//         let payload;
+//         console.log("In getProfileAPI email -->",user_email);
+//         db.collection('profile').where('actor.description', '==', user_email).onSnapshot((snapshot) => {
+//             payload = snapshot.docs.map((doc) => doc.data());
+//             console.log(payload);
+//             dispatch(setProfile(payload));
+//         });
+//     };
+// }
