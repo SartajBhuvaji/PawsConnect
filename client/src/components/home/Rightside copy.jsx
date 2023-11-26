@@ -4,8 +4,11 @@ import { connect } from "react-redux";
 import { getJobsAPI } from "../../actions";
 
 const Rightside = (props) => {
+
   useEffect(() => {
     props.getArticles();
+    // console.log("jere");
+    // console.log("stuff",props);
   }, []);
 
   return (
@@ -19,15 +22,9 @@ const Rightside = (props) => {
           </a>
         </Widget>
         <FeedList>
-          {props.articles.slice(0, 3).map((article, index) => (
-            <li key={index}>
-              <WidgetTabs>
-                {article.job_post?.company_name}
-                <br></br>
-                {article.job_post?.job_title}
-              </WidgetTabs>
-            </li>
-          ))}
+       <li>1st job from array</li>
+       <li>2nd job from array</li>
+       <li>3rd job from array</li>
         </FeedList>
       </FollowCard>
     </Container>
@@ -39,6 +36,8 @@ const Container = styled.div`
   padding-right: 12px;
 
 `;
+
+
 
 const FollowCard = styled.div`
   text-align: center;
@@ -88,35 +87,41 @@ const Widget = styled.div`
   }
 `;
 
-
-const WidgetTabs = styled.div`
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-
-  // padding-top: 12px;
-  padding-bottom: 12px;
-  background-color: #FFFFFF;
-  align-items: left;
-
-
-`;
-
 const FeedList = styled.ul`
-  margin-top: 5px;
-  text-align: left;
-  margin-left: -20px;
-  
-  
-  li {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  & > a {
+    text-decoration: none;
     display: flex;
-    
+    justify-content: space-between;
     align-items: center;
-    margin: 5px 0;
-    position: relative;
-    font-size: 14px;
-    & > div {
+    padding: 4px 12px;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+
+    div {
       display: flex;
       flex-direction: column;
+      text-align: left;
+      span {
+        font-size: 12px;
+        line-height: 1.333;
+        &:first-child {
+          color: rgba(0, 0, 0, 0.6);
+        }
+        &:nth-child(2) {
+          color: rgba(0, 0, 0, 1);
+        }
+      }
     }
+  }
+
+  svg {
+    color: rgba(0, 0, 0, 1);
   }
 `;
 

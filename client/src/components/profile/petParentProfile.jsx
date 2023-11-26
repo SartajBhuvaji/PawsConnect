@@ -21,7 +21,7 @@ const PetParentProfile = (props) => {
     e.preventDefault();
     try {
       await props.postProfileAPI(formData);
-      window.location.href = '/home';
+      // window.location.href = '/home';
     } catch (error) {
       console.error('Error:', error);
     }

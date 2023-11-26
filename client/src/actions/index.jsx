@@ -121,6 +121,7 @@ export function postArticleAPI(payload) {
 }
 
 export function postProfileAPI(payload) {
+    console.log("In postProfileAPI");
     return (dispatch) => {
         dispatch(setLoading(true));
 

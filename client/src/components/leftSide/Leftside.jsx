@@ -6,6 +6,18 @@ import { getProfileAPI } from "../../actions";
 const Leftside = (props) => {
   // Use state to manage the profile data
   const [profileData, setProfileData] = useState(null);
+// Helper function to determine account type
+  const getAccountType = (accountType) => {
+    if (!accountType) {
+      return "Complete your Profile";
+    } else if (accountType === "pet_professional") {
+      return "A wonderful Pet Professional";
+    } else if (accountType === "pet_parent") {
+      return "A wonderful Pet Parent";
+    } else {
+      return "Complete your Profile";
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +33,7 @@ const Leftside = (props) => {
     };
 
     fetchData();
-  }, [props.user?.email]);
+  }, []); //props.user?.email
 
   return (
     <Container>
@@ -34,70 +46,65 @@ const Leftside = (props) => {
 
             {profileData && (
               <div>
-              {/* <p>Username: {profileData[0].actor.title}</p> */}
-              {profileData && (
-                <AccountType>
-                  A wonderful {profileData[0].profile.account_type === "pet_professional" ? "Pet Professional" : "Pet Parent"}
-                </AccountType>
-              )}
-              {/* <AccountType>A wonderful {profileData[0].profile.account_type}</AccountType> */}
-            </div>
+                {profileData && (
+                  <AccountType>
+                    {getAccountType(profileData[0]?.profile?.account_type)}
+                  </AccountType>
+                )}
+              </div>
             )}
           </a>
         </UserInfo>
 
         {profileData && (
-        <div>
-          {/* A wonderful {profileData[0].profile.account_type} */}
-          {profileData[0].profile.account_type === "pet_parent" && (
-            <>
-              <Widget>
-                <a>
-                  <div>
-                    {/* {To be replaced by account details} */}
-                    <span>Pet's Name</span>
-                    <span>Moon Moon</span>
-                  </div>
-                  {/* <img src="/images/widget-icon.svg" alt="" /> */}
-                  <img src="/images/dog-widget-icon.svg" alt="" width="28" height="28" />
-                </a>
-              </Widget>
-              <Widget>
-                <a>
-                  <div>
-                    <span>Pet's Breed</span>
-                    <span>Siberian Husky</span>
-                  </div>
-                  <img src="/images/dog-widget-icon2.svg" alt="" width="40" height="40" />
-                </a>
-              </Widget>
-            </>
-          )}
-        </div>
-      )}
+          <div>
+            {profileData[0]?.profile?.account_type === "pet_parent" && (
+              <>
+                <Widget>
+                  <a>
+                    <div>
+                      <span>Pet's Name</span>
+                      <span>{profileData[0]?.profile?.pet_name}</span>
+                    </div>
+                    <img src="/images/dog-widget-icon.svg" alt="" width="28" height="28" />
+                  </a>
+                </Widget>
+                <Widget>
+                  <a>
+                    <div>
+                      <span>Pet's Breed</span>
+                      <span>{profileData[0]?.profile?.pet_breed}</span>
+                    </div>
+                    <img src="/images/dog-widget-icon2.svg" alt="" width="40" height="40" />
+                  </a>
+                </Widget>
+              </>
+            )}
+          </div>
+        )}
 
-      {profileData && profileData[0].profile.account_type === "pet_professional" && (
-        <div>
-          <Widget>
-            <a>
-              <div>
-                <span>Business Name</span>
-                <span>{profileData[0].profile.business_name}</span>
-              </div>
-              <img src="/images/dog-widget-icon.svg" alt="" width="28" height="28" />
-            </a>
-          </Widget>
-          <Widget>
-            <a>
-              <div>
-                <span>Business Type</span>
-                <span>{profileData[0].profile.business_type}</span>
-              </div>
-              <img src="/images/dog-widget-icon2.svg" alt="" width="40" height="40" />
-            </a>
-          </Widget>
-        </div>
-      )}
+        {profileData && profileData[0]?.profile?.account_type === "pet_professional" && (
+          <div>
+            <Widget>
+              <a>
+                <div>
+                  <span>Business Name</span>
+                  <span>{profileData[0]?.profile?.business_name}</span>
+                </div>
+                <img src="/images/dog-widget-icon.svg" alt="" width="28" height="28" />
+              </a>
+            </Widget>
+            <Widget>
+              <a>
+                <div>
+                  <span>Business Type</span>
+                  <span>{profileData[0]?.profile?.business_type}</span>
+                </div>
+                <img src="/images/dog-widget-icon2.svg" alt="" width="40" height="40" />
+              </a>
+            </Widget>
+          </div>
+        )}
         <Item>
           <span>
             <img src="/images/item-icon.svg" alt="" />

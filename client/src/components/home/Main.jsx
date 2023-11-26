@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import PostModal from "../postmodal/PostModal";
 import {useState} from "react";
-import { Connect } from "react-redux";
 import { useEffect } from "react";
 import { getArticlesAPI } from "../../actions";
 import ReactPlayer from "react-player";
