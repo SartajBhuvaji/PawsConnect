@@ -211,18 +211,22 @@ export function getJobsAPI() {
 
 //Need to make changes here
 export function getProfileAPI(user_email) {
-    return (dispatch) => {
+    return async (dispatch) => {
       try {
-        let payload;
-        //console.log("In getProfileAPI email -->",user_email);
-        db.collection('profile').where('actor.description', '==', user_email).onSnapshot((snapshot) => {
-            payload = snapshot.docs.map((doc) => doc.data());
-            console.log("SENDING PAYLAOD", payload);
-            dispatch(setProfile(payload));
-        });
+        if (!user_email) {
+          console.error('Error: User email is undefined');
+          return;
+        }
+  
+        const snapshot = await db.collection('profile').where('actor.description', '==', user_email).get();
+        const payload = snapshot.docs.map((doc) => doc.data());
+        console.log("SENDING PAYLOAD", payload);
+        dispatch(setProfile(payload));
+        return payload;
       } catch (error) {
-        console.error('Error fetching profile data:');
+        console.error('Error fetching profile data:', error);
         // Handle error or dispatch an error action if needed
+        throw error;
       }
     };
   }

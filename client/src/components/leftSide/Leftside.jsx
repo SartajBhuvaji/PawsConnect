@@ -1,18 +1,28 @@
 import styled from "styled-components";
 import { connect } from "react-redux";
-import firebase from 'firebase/compat/app';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getProfileAPI } from "../../actions";
 
-var email = null;
 const Leftside = (props) => {
+  // Use state to manage the profile data
+  const [profileData, setProfileData] = useState(null);
 
   useEffect(() => {
-    props.getProfile(props.user?.email);
-    //console.log("jere",props.user?.email);
-    console.log("stuff- >",props);
-  },[props.user?.email]);
-  
+    const fetchData = async () => {
+      try {
+        const data = await props.getProfile(props.user?.email);
+        console.log("Data that I received", data);
+
+        // Update the component state with the received data
+        setProfileData(data);
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+      }
+    };
+
+    fetchData();
+  }, [props.user?.email]);
+
   return (
     <Container>
       <ArtCard>
@@ -20,64 +30,96 @@ const Leftside = (props) => {
           <CardBackground />
           <a>
             <Photo />
-            <Link>Welcome, {props.user ? props.user.displayName: ''}</Link>
+            <Link>Welcome, {props.user ? props.user.displayName : ''}</Link>
 
-          </a>
-          <a>
-            {/* {To be replaced by account type} */}
-            <AccountType>A wonderful Pet Parent</AccountType>
+            {profileData && (
+              <div>
+              {/* <p>Username: {profileData[0].actor.title}</p> */}
+              {profileData && (
+                <AccountType>
+                  A wonderful {profileData[0].profile.account_type === "pet_professional" ? "Pet Professional" : "Pet Parent"}
+                </AccountType>
+              )}
+              {/* <AccountType>A wonderful {profileData[0].profile.account_type}</AccountType> */}
+            </div>
+            )}
           </a>
         </UserInfo>
-        <Widget>
-          <a>
-            <div>
-               {/* {To be replaced by account details} */}
-              <span>Pet's Name</span>
-              <span>Moon Moon</span>
-            </div>
-            {/* <img src="/images/widget-icon.svg" alt="" /> */}
-            <img src="/images/dog-widget-icon.svg" alt="" width="28" height="28" />
 
-          </a>
-        </Widget>
-        <Widget>
-          <a>
-            <div>
-              <span>Pet's Breed</span>
-              <span>Siberian Husky</span>
-            </div>
-            <img src="/images/dog-widget-icon2.svg" alt="" width="40" height="40" />
-          </a>
-        </Widget>
+        {profileData && (
+        <div>
+          {/* A wonderful {profileData[0].profile.account_type} */}
+          {profileData[0].profile.account_type === "pet_parent" && (
+            <>
+              <Widget>
+                <a>
+                  <div>
+                    {/* {To be replaced by account details} */}
+                    <span>Pet's Name</span>
+                    <span>Moon Moon</span>
+                  </div>
+                  {/* <img src="/images/widget-icon.svg" alt="" /> */}
+                  <img src="/images/dog-widget-icon.svg" alt="" width="28" height="28" />
+                </a>
+              </Widget>
+              <Widget>
+                <a>
+                  <div>
+                    <span>Pet's Breed</span>
+                    <span>Siberian Husky</span>
+                  </div>
+                  <img src="/images/dog-widget-icon2.svg" alt="" width="40" height="40" />
+                </a>
+              </Widget>
+            </>
+          )}
+        </div>
+      )}
+
+      {profileData && profileData[0].profile.account_type === "pet_professional" && (
+        <div>
+          <Widget>
+            <a>
+              <div>
+                <span>Business Name</span>
+                <span>{profileData[0].profile.business_name}</span>
+              </div>
+              <img src="/images/dog-widget-icon.svg" alt="" width="28" height="28" />
+            </a>
+          </Widget>
+          <Widget>
+            <a>
+              <div>
+                <span>Business Type</span>
+                <span>{profileData[0].profile.business_type}</span>
+              </div>
+              <img src="/images/dog-widget-icon2.svg" alt="" width="40" height="40" />
+            </a>
+          </Widget>
+        </div>
+      )}
         <Item>
-      
           <span>
             <img src="/images/item-icon.svg" alt="" />
             Premium Activated
           </span>
         </Item>
       </ArtCard>
-
-      {/* <CommunityCard>
-        <a>
-          <span>Groups</span>
-        </a>
-        <a>
-          <span>
-            Events
-            <img src="/images/plus-icon.svg" alt="" />
-          </span>
-        </a>
-        <a>
-          <span>Follow Hashtags</span>
-        </a>
-        <a>
-          <span>Discover more</span>
-        </a>
-      </CommunityCard> */}
     </Container>
   );
 };
+
+// ... rest of your styled components
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  getProfile: (email) => dispatch(getProfileAPI(email)),
+});
+
 
 const Container = styled.div`
   grid-area: leftside;
@@ -199,15 +241,5 @@ const Item = styled.a`
     background-color: rgba(0, 0, 0, 0.08);
   }
 `;
-
-const mapStateToProps = (state) => {
-  return {
-    user: state.userState.user,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  getProfile: (email) => dispatch(getProfileAPI(email)),
-});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Leftside);
