@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Leftside from "../leftSide/Leftside";
 import Main from "./Main";
-import Rightside from "./Rightside";
+import Rightside from "../rightSide/Rightside";
 import { Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -16,6 +16,7 @@ const Home = (props) => {
                 <Section>                   
                                     
                 </Section>
+
                 <Layout>
                     <Leftside />
                     <Main />
@@ -30,29 +31,9 @@ const Container = styled.div`
     max-width: 100%;
 `
 
-const Content = styled.div`
-    max-width: 1128px;
-    margin-left: auto;
-    margin-right: auto;
-`
-
 const Section = styled.section`
     padding: 16px 0;
 
-    // min-height: 50px;
-    // padding: 16px 0;
-    // box-sizing: content-box;
-    // text-align: center;
-    // text-decoration: underline;
-    // display: flex;
-    // justify-content: center;
-    // h5 {
-    //     color: #0a66c2;
-    //     font-size: 14px;
-    //     a {
-    //         font-weight: 700;
-    //     }
-    // }
      p {
          font-size: 14px;
          color: #434649;
@@ -73,6 +54,5 @@ const mapStateToProps = (state) => {
         user: state.userState.user,
     };
 };
-
 
 export default connect(mapStateToProps)(Home);

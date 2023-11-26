@@ -37,6 +37,7 @@ const Main = (props) => {
     <p>There are no articles</p>
     :
     (<Container>
+
     <Sharebox>
     <div>
       {
@@ -44,15 +45,15 @@ const Main = (props) => {
         <img src={props.user.photoURL} alt="" />
         ) : (
           <img src="/images/user.svg" alt="" />
-    )
-    }
+        )
+      }
     <button onClick={handleClick} disabled={props.loading? true: false}>Start a post</button>
     </div>
     </Sharebox>
 
     <Content>
       {props.loading && <img src="/images/spin-loader.svg" alt="" />}
-      {props.articles.length > 0 &&
+      {props.articles?.length > 0 &&
       props.articles.map((article, key) => (  
      
       <Article key = {key}>
@@ -61,13 +62,6 @@ const Main = (props) => {
             <img src={article.actor.image} alt="" />
             <div>
               <span>{article.actor.title}</span>
-              {/* 
-              if Pet parent:
-                display:Pet parent of {Pet name} 
-              else:
-                display: Pet professional {Professional name}    
-                */}
-
               <span>{article.actor?.description}</span>
               <span>{article.actor?.date.toDate().toLocaleDateString()}</span>
             </div>
@@ -76,17 +70,13 @@ const Main = (props) => {
             <img src="/images/ellipsis.svg" alt="" />
           </button>
         </SharedActor>
-        {
-          //console.log("description", article)
-        }
+
         <Description>{article.video?.description}</Description>
-        
-        
+ 
         {
           (article.video?.sharedImg || article.video?.video) && ( 
             <SharedImg>
               <a>
-                
                 { 
                   !article.video?.sharedImg && article.video?.video ? 
                   <ReactPlayer width={'100%'} url={article.video?.video} /> 
@@ -104,28 +94,14 @@ const Main = (props) => {
               <span>75</span>
             </button>
           </li>
-          {/* <li>
-            <a> comments</a>
-          </li> */}
         </SocialCounts>
         <SocialActions>
           <button>
             <img src="/images/like-icon.svg" alt="" />
             <span>Like</span>
           </button>
-          {/* <button>
-            <img src="/images/comment-icon.svg" alt="" />
-            <span>Comments</span>
-          </button>
-          <button>
-            <img src="/images/share-icon.svg" alt="" />
-            <span>Share</span>
-          </button>
-          <button>
-            <img src="/images/send-icon.svg" alt="" />
-            <span>Send</span>
-          </button> */}
         </SocialActions>
+        
       </Article> ))}
       </Content>
 

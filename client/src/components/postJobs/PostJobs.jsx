@@ -182,11 +182,6 @@ const UserInfo = styled.div`
     }
 `;
 
-const ShradedCreation = styled.div`
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 24px 12px 16px;
-`;
 
 const AssetButton = styled.div`
     display: flex;
@@ -194,26 +189,6 @@ const AssetButton = styled.div`
     height: 40px;
     min-width: auto;
     color: rgba(0,0,0,0.5);
-`;
-
-const AttachAssets = styled.div`
-    align-items: center;
-    display: flex;
-    padding-right: 8px;
-    ${AssetButton} {
-        width: 40px;
-    }
-`;
-
-const ShareComment = styled.div`
-    padding-left: 8px;
-    margin-right: auto;
-    border-left: 1px solid rgba(0,0,0,0.15);
-    ${AssetButton} {
-        svg {
-            margin-right: 5px;
-        }
-    }
 `;
 
 const PostButton = styled.button`
@@ -261,30 +236,6 @@ const SmallEditor = styled.div`
         font-size: 16px;
     }
 `; 
-
-const editorText = styled.div`
-    padding: 12px 24px;
-    textarea {
-        width: 100%;
-        min-height: 100px;
-        resize: none;
-    }
-    input {
-        width: 100%;
-        height: 35px;
-        font-size: 16px;
-        margin-bottom: 20px;
-    }
-`;
-
-const UploadImage = styled.div`
-    text-align: center;
-    img {
-        width: 100%;
-    }
-`;  
-
-
 
 const mapStateToProps = (state) => {
     return {

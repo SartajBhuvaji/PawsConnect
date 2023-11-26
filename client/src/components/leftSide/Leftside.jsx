@@ -4,9 +4,8 @@ import { useEffect, useState } from "react";
 import { getProfileAPI } from "../../actions";
 
 const Leftside = (props) => {
-  // Use state to manage the profile data
+  
   const [profileData, setProfileData] = useState(null);
-// Helper function to determine account type
   const getAccountType = (accountType) => {
     if (!accountType) {
       return "Complete your Profile";
@@ -116,16 +115,6 @@ const Leftside = (props) => {
   );
 };
 
-// ... rest of your styled components
-const mapStateToProps = (state) => {
-  return {
-    user: state.userState.user,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  getProfile: (email) => dispatch(getProfileAPI(email)),
-});
 
 
 const Container = styled.div`
@@ -248,5 +237,16 @@ const Item = styled.a`
     background-color: rgba(0, 0, 0, 0.08);
   }
 `;
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  getProfile: (email) => dispatch(getProfileAPI(email)),
+});
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Leftside);

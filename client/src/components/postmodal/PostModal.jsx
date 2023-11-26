@@ -39,8 +39,8 @@ const PostModal = (props) => {
             description: editorText,
             timestamp: firebase.firestore.Timestamp.now(),
         };
-        console.log("FLAG 1")
-        console.log(payload);
+        // console.log("FLAG 1")
+        // console.log(payload);
         props.postArticleAPI(payload);
         reset(e);
     };
@@ -221,17 +221,6 @@ const AttachAssets = styled.div`
     }
 `;
 
-const ShareComment = styled.div`
-    padding-left: 8px;
-    margin-right: auto;
-    border-left: 1px solid rgba(0,0,0,0.15);
-    ${AssetButton} {
-        svg {
-            margin-right: 5px;
-        }
-    }
-`;
-
 const PostButton = styled.button`
     min-width: 60px;
     border-radius: 25px;
@@ -261,29 +250,12 @@ const Editor = styled.div`
     }
 `;  
 
-const editorText = styled.div`
-    padding: 12px 24px;
-    textarea {
-        width: 100%;
-        min-height: 100px;
-        resize: none;
-    }
-    input {
-        width: 100%;
-        height: 35px;
-        font-size: 16px;
-        margin-bottom: 20px;
-    }
-`;
-
 const UploadImage = styled.div`
     text-align: center;
     img {
         width: 100%;
     }
 `;  
-
-
 
 const mapStateToProps = (state) => {
     return {

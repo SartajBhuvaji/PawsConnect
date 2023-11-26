@@ -34,8 +34,7 @@ const Jobs = (props) => {
   };
   return (
     <>
-    { 
-    
+    {  
     props.articles.length === 0 ? 
     <p>There are no articles</p>
     :
@@ -51,9 +50,8 @@ const Jobs = (props) => {
     }
     <button onClick={handleClick} disabled={props.loading? true: false}>Post a job</button>
     </div>
+
     </Sharebox>
-
-
       <Content> 
       {props.loading && <img src="/images/spin-loader.svg" alt="" />}
       {props.articles?.length > 0 &&
@@ -70,6 +68,7 @@ const Jobs = (props) => {
         </div>
         </a>
         </SharedActor>
+
         <div>
           <Description>
           <CompanyName><spam>{article.job_post?.company_name}</spam></CompanyName>
@@ -79,10 +78,7 @@ const Jobs = (props) => {
           </Description>
         </div>
 
-    
-
-        </Article> ))}
-        {/* <PostModal showModal={showModal} handleClick= {handleClick}/>  */}
+       </Article> ))}
       </Content>
       <PostJobs showModal={showModal} handleClick= {handleClick}/>   
     </Container>
