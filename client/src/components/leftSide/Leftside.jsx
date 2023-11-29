@@ -115,11 +115,9 @@ const Leftside = (props) => {
   );
 };
 
-
-
 const Container = styled.div`
   grid-area: leftside;
-  padding-left: 12px;
+  padding-left: 100px;
 `;
 
 const ArtCard = styled.div`

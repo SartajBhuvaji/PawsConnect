@@ -5,8 +5,8 @@ import { getJobsAPI } from "../../actions";
 
 const Rightside = (props) => {
   useEffect(() => {
-    props.getArticles();
-  }, []);
+    props.getJobs();
+  });
 
   return (
     <Container>
@@ -19,7 +19,7 @@ const Rightside = (props) => {
           </a>
         </Widget>
         <FeedList>
-          {props.articles.slice(0, 3).map((article, index) => (
+          {props.articles?.slice(0, 3).map((article, index) => (
             <li key={index}>
               <WidgetTabs>
                 {article.job_post?.company_name}
@@ -129,7 +129,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  getArticles: () => dispatch(getJobsAPI()),
+  getJobs: () => dispatch(getJobsAPI()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Rightside);

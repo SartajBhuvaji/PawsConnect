@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import PostJobs from "../postJobs/PostJobs";
 import {useState} from "react";
-import { Connect } from "react-redux";
 import { useEffect } from "react";
 import { getJobsAPI } from "../../actions";
 
@@ -11,9 +10,7 @@ const Jobs = (props) => {
 
   useEffect(() => {
     props.getArticles();
-    // console.log("jere");
-    // console.log("stuff",props);
-  }, []);
+  }, [props]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -68,15 +65,15 @@ const Jobs = (props) => {
         </div>
         </a>
         </SharedActor>
-
-        <div>
-          <Description>
+        <Description>
+          <a>
           <CompanyName><spam>{article.job_post?.company_name}</spam></CompanyName>
           <JobTitle><span>{article.job_post?.job_title}</span></JobTitle>
           <JobDescription><span>{article.job_post?.job_description}</span></JobDescription>
           <JobPay><span>{article.job_post?.job_pay}</span></JobPay>
-          </Description>
-        </div>
+          </a>
+        </Description>
+        
 
        </Article> ))}
       </Content>
@@ -193,8 +190,9 @@ const SharedActor = styled.div`
   padding-right: 40px;
   flex-wrap: nowrap;
   padding: 12px 16px 0;
+  padding-bottom: 8px;
   margin-bottom: 10px; /* Adjust the margin as needed */
-  // border-bottom: 1px solid grey;
+  border-bottom: #e9e5df solid 1px;
   align-items: center;
   display: flex;
   a {
@@ -246,19 +244,6 @@ const Description = styled.div`
   text-align: left;
 `;
 
-const SharedImg = styled.div`
-  margin-top: 8px;
-  width: 100%;
-  display: block;
-  position: relative;
-  background-color: #f9fafb;
-  img {
-    object-fit: contain;
-    width: 100%;
-    height: 100%;
-  }
-`;
-
 const JobPay = styled.ul`
   line-height: 1.3;
   display: flex;
@@ -273,28 +258,6 @@ const JobPay = styled.ul`
     font-size: 12px;
     button {
       display: flex;
-    }
-  }
-`;
-
-const SocialActions = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: flex-start;
-  margin: 0;
-  min-height: 40px;
-  padding: 4px 8px;
-  button {
-    display: inline-flex;
-    align-items: center;
-    padding: 8px;
-    color: #0a66c2;
-    border: none;
-    background-color: white;
-    @media(min-width: 768px){
-      span {
-        margin-left: 8px;
-      }
     }
   }
 `;

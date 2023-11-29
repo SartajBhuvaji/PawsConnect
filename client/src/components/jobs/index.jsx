@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import Jobs from "./Main";
-import { Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Leftside from "../leftSide/Leftside";
 
 
-const Home = (props) => {
+const Home = () => {
     return( 
             <Container>
-                <Section>                
-                                    
+                <Section>                                                    
                 </Section>
                 <Layout>
                     <Leftside />

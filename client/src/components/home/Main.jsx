@@ -11,7 +11,7 @@ const Main = (props) => {
 
   useEffect(() => {
     props.getArticles();
-  }, []);
+  });
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -88,19 +88,19 @@ const Main = (props) => {
         }
 
         <SocialCounts>
-          <li>
+          {/* <li>
             <button>
               <img src="https://static-exp1.licdn.com/sc/h/d310t2g24pvdy4pt1jkedo4yb" alt="" />
               <span>75</span>
             </button>
-          </li>
+          </li> */}
         </SocialCounts>
-        <SocialActions>
+        {/* <SocialActions>
           <button>
             <img src="/images/like-icon.svg" alt="" />
             <span>Like</span>
           </button>
-        </SocialActions>
+        </SocialActions> */}
         
       </Article> ))}
       </Content>
@@ -185,12 +185,13 @@ const Article = styled(CommonCard)`
   margin: 0 0 8px;
   overflow: visible;
 `;
-
 const SharedActor = styled.div`
   padding-right: 40px;
   flex-wrap: nowrap;
   padding: 12px 16px 0;
-  margin-bottom: 8px;
+  padding-bottom: 8px;
+  margin-bottom: 10px; /* Adjust the margin as needed */
+  border-bottom: #e9e5df solid 1px;
   align-items: center;
   display: flex;
   a {
@@ -280,7 +281,7 @@ const SocialActions = styled.div`
   display: flex;
   justify-content: flex-start;
   margin: 0;
-  min-height: 40px;
+  min-height: 10px;
   padding: 4px 8px;
   button {
     display: inline-flex;

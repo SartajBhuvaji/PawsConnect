@@ -1,7 +1,7 @@
 import {auth, provider, storage} from '../firebase';
 import db from '../firebase';
-import { SET_USER, SET_LOADING_STATUS, GET_ARTICLES, SET_PROFILE } from './actionType';
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { SET_USER, SET_LOADING_STATUS, GET_ARTICLES, SET_PROFILE, GET_JOBS } from './actionType';
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export const setUser = (payload) =>({
     type: SET_USER,
@@ -14,6 +14,11 @@ export const setLoading = (status) =>({
 });
 
 export const getArticles = (payload) =>({
+    type: GET_ARTICLES,
+    payload: payload,
+});
+
+export const getJobs = (payload) =>({
     type: GET_ARTICLES,
     payload: payload,
 });
@@ -35,6 +40,7 @@ export function signInAPI(){
         .catch((error) => alert("Sign in Failed!"));
     };
 }
+
 export function getUserAuth(){
     return (dispatch) =>{
         auth.onAuthStateChanged(async (user) =>{
@@ -44,6 +50,7 @@ export function getUserAuth(){
         });
     };
 }
+
 export function signOutAPI(){
     return (dispatch) =>{
         auth
@@ -100,7 +107,7 @@ export function postArticleAPI(payload) {
             });
             dispatch(setLoading(false));
         }
-        else { //just text
+        else { 
             db.collection('articles').add({
                 actor: {
                     description: payload.user.email,
@@ -184,14 +191,11 @@ export function postJobsAPI(payload) {
     };
 }
 
-
 export function getArticlesAPI() {
     return (dispatch) => {
         let payload;
-
         db.collection('articles').orderBy('actor.date', 'desc').onSnapshot((snapshot) => {
             payload = snapshot.docs.map((doc) => doc.data());
-            console.log(payload);
             dispatch(getArticles(payload));
         });
     };
@@ -199,18 +203,14 @@ export function getArticlesAPI() {
 
 export function getJobsAPI() {
     return (dispatch) => {
-        let payload;
-
+        let payload = [];
         db.collection('jobs').orderBy('actor.date', 'desc').onSnapshot((snapshot) => {
             payload = snapshot.docs.map((doc) => doc.data());
-            console.log(payload);
-            dispatch(getArticles(payload));
+            dispatch(getJobs(payload));
         });
     };
 }
 
-
-//Need to make changes here
 export function getProfileAPI(user_email) {
     return async (dispatch) => {
       try {
@@ -226,21 +226,7 @@ export function getProfileAPI(user_email) {
         return payload;
       } catch (error) {
         console.error('Error fetching profile data:', error);
-        // Handle error or dispatch an error action if needed
         throw error;
       }
     };
   }
-
-// export function getProfileAPI(user_email){
-//     console.log("In getProfileAPI email -->",user_email);
-//     return (dispatch) => {
-//         let payload;
-//         console.log("In getProfileAPI email -->",user_email);
-//         db.collection('profile').where('actor.description', '==', user_email).onSnapshot((snapshot) => {
-//             payload = snapshot.docs.map((doc) => doc.data());
-//             console.log(payload);
-//             dispatch(setProfile(payload));
-//         });
-//     };
-// }
