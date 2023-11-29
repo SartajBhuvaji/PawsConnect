@@ -11,12 +11,13 @@ const Login = (props) => {
       <Navigate to='/home' /> }
       <Nav>
         <a href="/">
-          <img src="/images/login-logo.svg" alt="" />
+          <img src="/images/linkedin.svg" alt=""  height={100} width={100}/>
         </a>
       </Nav>
       <Section>
         <Hero>
-          <h1>Welcome to a social media for dogs!</h1>
+          <h1>PawsConnect</h1>
+          <h2>Welcome to a social media for dogs!</h2>
           <img src="/images/home-background.jpg" alt="" />
         </Hero>
         <Form>
@@ -78,7 +79,7 @@ const Section = styled.section`
 const Hero = styled.div`
   width: 100%;
   margin-left: -75px;
-  h1 {
+  h1,h2 {
     padding-bottom: 0;
     width: 55%;
     font-size: 56px;

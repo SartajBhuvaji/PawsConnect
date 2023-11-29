@@ -10,7 +10,7 @@ const Jobs = (props) => {
 
   useEffect(() => {
     props.getArticles();
-  }, [props]);
+  }, []);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -31,11 +31,10 @@ const Jobs = (props) => {
   };
   return (
     <>
-    {  
-    props.articles.length === 0 ? 
-    <p>There are no articles</p>
-    :
-    (<Container>
+    {props.jobs.length === 0 ? (
+  <p>There are no jobs</p>
+) : (
+<Container>
       <Sharebox>
       <div>
       {
@@ -49,34 +48,43 @@ const Jobs = (props) => {
     </div>
 
     </Sharebox>
-      <Content> 
-      {props.loading && <img src="/images/spin-loader.svg" alt="" />}
-      {props.articles?.length > 0 &&
-      props.articles?.map((article, key) => (  
+    <Content>
+    {props.loading && <img src="/images/spin-loader.svg" alt="" />}
+    {props.jobs?.length > 0 &&
+      props.jobs?.map((job, key) => (
+        <Article key={key}>
+          <SharedActor>
+            <a>
+              <img src={job.actor?.image} alt="" style={{ borderRadius: "50%" }} />
+              <div>
+                <span>{props.user?.displayName}</span>
+                <span>{props.user?.email}</span>
+                <span>{job.actor?.date.toDate().toLocaleDateString()}</span>
+              </div>
+            </a>
+          </SharedActor>
+          <Description>
+            <a>
+              {console.log("dasdaydhasildu ", job)}
+              <CompanyName>
+                <span>{job.job_post?.company_name}</span>
+              </CompanyName>
+              <JobTitle>
+                <span>{job.job_post?.job_title}</span>
+              </JobTitle>
+              <JobDescription>
+                <span>{job.job_post?.job_description}</span>
+              </JobDescription>
+              <JobPay>
+                <span>{job.job_post?.job_pay}</span>
+              </JobPay>
+            </a>
+          </Description>
+        </Article>
+      ))}
+  </Content>
 
-        <Article key = {key}>
-        <SharedActor>
-        <a>
-        <img src={article.actor?.image} alt="" style={{borderRadius: "50%"}}  />
-        <div>
-          <span>{props.user?.displayName}</span>
-          <span>{props.user?.email}</span>
-          <span>{article.actor?.date.toDate().toLocaleDateString()}</span>
-        </div>
-        </a>
-        </SharedActor>
-        <Description>
-          <a>
-          <CompanyName><spam>{article.job_post?.company_name}</spam></CompanyName>
-          <JobTitle><span>{article.job_post?.job_title}</span></JobTitle>
-          <JobDescription><span>{article.job_post?.job_description}</span></JobDescription>
-          <JobPay><span>{article.job_post?.job_pay}</span></JobPay>
-          </a>
-        </Description>
-        
 
-       </Article> ))}
-      </Content>
       <PostJobs showModal={showModal} handleClick= {handleClick}/>   
     </Container>
     )}
@@ -274,6 +282,7 @@ const mapStateToProps = (state) => {
     user: state.userState.user,
     loading: state.articleState.loading,
     articles: state.articleState.articles,
+    jobs: state.articleState.jobs, // Map jobs from state
   };
 };
 

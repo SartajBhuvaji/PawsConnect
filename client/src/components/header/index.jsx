@@ -11,7 +11,7 @@ const Header =(props) =>{
            <Content>
                 <Logo>
                     <a href="/home">
-                        <img src="/images/linkedin.png" alt="home-logo" />
+                        <img src="/images/linkedin.svg" alt="home-logo" height={90} width={90} />
                     </a>
                 </Logo>
                 <Description>
@@ -238,6 +238,8 @@ const Work = styled(User)`
 const mapDispatchToProps = (dispatch) => {
     return {
         signOut: () => dispatch(signOutAPI()),
+
+    
     };
 };
 

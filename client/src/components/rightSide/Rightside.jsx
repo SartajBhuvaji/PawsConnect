@@ -6,7 +6,7 @@ import { getJobsAPI } from "../../actions";
 const Rightside = (props) => {
   useEffect(() => {
     props.getJobs();
-  });
+  }, []);
 
   return (
     <Container>
@@ -19,12 +19,13 @@ const Rightside = (props) => {
           </a>
         </Widget>
         <FeedList>
-          {props.articles?.slice(0, 3).map((article, index) => (
+        {props.jobs?.slice(0, 3).map((jobs, index) => (
             <li key={index}>
               <WidgetTabs>
-                {article.job_post?.company_name}
+                {console.log("sdsa dasdsadsadsds",jobs)}
+                {jobs.job_post?.company_name}
                 <br></br>
-                {article.job_post?.job_title}
+                {jobs.job_post?.job_title}
               </WidgetTabs>
             </li>
           ))}
@@ -36,8 +37,7 @@ const Rightside = (props) => {
 
 const Container = styled.div`
   grid-area: rightside;
-  padding-right: 12px;
-
+  padding-right: 100px;
 `;
 
 const FollowCard = styled.div`
@@ -49,7 +49,6 @@ const FollowCard = styled.div`
   position: relative;
   border: none;
   box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 0 0 rgb(0 0 0 / 20%);
- 
 `;
 
 const Widget = styled.div`
@@ -88,27 +87,21 @@ const Widget = styled.div`
   }
 `;
 
-
 const WidgetTabs = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-
   // padding-top: 12px;
   padding-bottom: 12px;
   background-color: #FFFFFF;
   align-items: left;
-
-
 `;
 
 const FeedList = styled.ul`
   margin-top: 5px;
   text-align: left;
   margin-left: -20px;
-  
-  
+
   li {
     display: flex;
-    
     align-items: center;
     margin: 5px 0;
     position: relative;
@@ -125,6 +118,7 @@ const mapStateToProps = (state) => {
     user: state.userState.user,
     loading: state.articleState.loading,
     articles: state.articleState.articles,
+    jobs: state.articleState.jobs, // Map jobs from state
   };
 };
 

@@ -19,7 +19,7 @@ export const getArticles = (payload) =>({
 });
 
 export const getJobs = (payload) =>({
-    type: GET_ARTICLES,
+    type: GET_JOBS,
     payload: payload,
 });
 
@@ -56,7 +56,7 @@ export function signOutAPI(){
         auth
         .signOut()
         .then(() =>{
-            dispatch(setUser(null));
+            dispatch(setUser(null));       
         })
         .catch((error) => alert(error.message));
     };
@@ -203,13 +203,18 @@ export function getArticlesAPI() {
 
 export function getJobsAPI() {
     return (dispatch) => {
-        let payload = [];
-        db.collection('jobs').orderBy('actor.date', 'desc').onSnapshot((snapshot) => {
-            payload = snapshot.docs.map((doc) => doc.data());
-            dispatch(getJobs(payload));
+      db.collection('jobs')
+        .orderBy('actor.date', 'desc')
+        .get()
+        .then((querySnapshot) => {
+          const payload = querySnapshot.docs.map((doc) => doc.data());
+          dispatch(getJobs(payload));
+        })
+        .catch((error) => {
+          console.error('Error fetching jobs:', error);
         });
     };
-}
+  }
 
 export function getProfileAPI(user_email) {
     return async (dispatch) => {
