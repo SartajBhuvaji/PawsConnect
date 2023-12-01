@@ -1,14 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { Navigate } from 'react-router-dom';
 import Jobs from "./Main";
 import { connect } from 'react-redux';
 import Leftside from "../leftSide/Leftside";
 
 
-const Home = () => {
+const Home = (props) => {
     return( 
             <Container>
+                {
+                    !props.user && <Navigate to="/" />
+                }
                 <Section>                                                    
                 </Section>
                 <Layout>

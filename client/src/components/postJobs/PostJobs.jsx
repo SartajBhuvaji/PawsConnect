@@ -60,7 +60,7 @@ return (
                     </UserInfo>
                     <SmallEditor>
                         <textarea value ={companyName} 
-                        placeholder="Company Name" 
+                        placeholder="Posting Name or Company Name" 
                         autoFocus={true} 
                         onChange={(e)=>setcompanyName(e.target.value)}
                         required>    

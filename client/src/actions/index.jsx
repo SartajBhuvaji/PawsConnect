@@ -1,3 +1,4 @@
+import { redirect } from 'react-router-dom';
 import {auth, provider, storage} from '../firebase';
 import db from '../firebase';
 import { SET_USER, SET_LOADING_STATUS, GET_ARTICLES, SET_PROFILE, GET_JOBS } from './actionType';
@@ -57,7 +58,8 @@ export function signOutAPI(){
         auth
         .signOut()
         .then(() =>{
-            dispatch(setUser(null));       
+            dispatch(setUser(null));   
+            window.location.href = '/home';
         })
         .catch((error) => alert(error.message));
     };

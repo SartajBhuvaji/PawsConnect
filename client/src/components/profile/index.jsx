@@ -12,12 +12,10 @@ import PetParentProfile from './petParentProfile';
 const Profile = (props) => {
     return( 
             <Container>
-                {/* {
+                 {
                     !props.user && <Navigate to="/" />
-                } */}
-                <Section>
-            
-                                    
+                }
+                <Section>                  
                 </Section>
                 <Layout>
                     
