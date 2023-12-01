@@ -2,6 +2,7 @@ import {auth, provider, storage} from '../firebase';
 import db from '../firebase';
 import { SET_USER, SET_LOADING_STATUS, GET_ARTICLES, SET_PROFILE, GET_JOBS } from './actionType';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import isEqual from 'lodash/isEqual';
 
 export const setUser = (payload) =>({
     type: SET_USER,
@@ -201,20 +202,41 @@ export function getArticlesAPI() {
     };
 }
 
+// export function getJobsAPI() {
+//     return (dispatch) => {
+//       db.collection('jobs')
+//         .orderBy('actor.date', 'desc')
+//         .get()
+//         .then((querySnapshot) => {
+//           const payload = querySnapshot.docs.map((doc) => doc.data());
+//           dispatch(getJobs(payload));
+//         })
+//         .catch((error) => {
+//           console.error('Error fetching jobs:', error);
+//         });
+//     };
+//   }
+
 export function getJobsAPI() {
-    return (dispatch) => {
+    return (dispatch, getState) => {
       db.collection('jobs')
         .orderBy('actor.date', 'desc')
         .get()
         .then((querySnapshot) => {
           const payload = querySnapshot.docs.map((doc) => doc.data());
-          dispatch(getJobs(payload));
+  
+          // Check if the payload is different before dispatching
+          const currentState = getState();
+          if (!isEqual(currentState.articleState.jobs, payload)) {
+            dispatch(getJobs(payload));
+          }
         })
         .catch((error) => {
           console.error('Error fetching jobs:', error);
         });
     };
   }
+  
 
 export function getProfileAPI(user_email) {
     return async (dispatch) => {
