@@ -193,6 +193,7 @@ const AssetButton = styled.div`
 
 const PostButton = styled.button`
     min-width: 60px;
+    margin-left: auto;
     border-radius: 25px;
     padding-left: 16px;
     padding-right: 16px;

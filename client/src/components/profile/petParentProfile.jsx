@@ -76,7 +76,7 @@ const PetParentProfile = (props) => {
               required
             />
           </div>
-          <SubmitButton type="submit" onSubmit={handleSubmit}>Create Account!</SubmitButton>
+          <SubmitButton type="submit" onSubmit={handleSubmit}>Update Profile</SubmitButton>
           <SubmitButton type="submit" onClick={() => window.location.href = '/profile'}>Back</SubmitButton>
         </form>
       </CommonCard>
@@ -177,7 +177,7 @@ const Input = styled.input`
 
 
 const SubmitButton = styled.button`
-  background-color: #70b5f9;
+  background-color: #0a66c2;
   color: white;
   border: none;
   margin-right: 20px;

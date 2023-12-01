@@ -75,7 +75,7 @@ const Layout = styled.div`
 
 
 const SubmitButton = styled.button`
-  background-color: #70b5f9;
+  background-color: #0a66c2;
   color: white;
   border: none;
   margin-right: 20px;
