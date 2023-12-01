@@ -22,7 +22,7 @@ const Rightside = (props) => {
         {props.jobs?.slice(0, 3).map((job, index) => (
             <li key={index}>
               <WidgetTabs>
-                {console.log("sdsa dasdsadsadsds",job)}
+                {/* {console.log("sdsa dasdsadsadsds",job)} */}
                 {job.job_post?.company_name}
                 <br></br>
                 {job.job_post?.job_title}

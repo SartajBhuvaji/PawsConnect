@@ -22,7 +22,7 @@ const Leftside = (props) => {
     const fetchData = async () => {
       try {
         const data = await props.getProfile(props.user?.email);
-        console.log("Data that I received", data);
+        // console.log("Data that I received", data);
 
         // Update the component state with the received data
         setProfileData(data);

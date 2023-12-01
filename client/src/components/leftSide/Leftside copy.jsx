@@ -11,7 +11,7 @@ const Leftside = (props) => {
   useEffect(() => {
     data = props.getProfile(props.user?.email);
     //console.log("jere",props.user?.email);
-    console.log("stuff- >",props);
+    // console.log("stuff- >",props);
   },[props.user?.email]);
   
   return (

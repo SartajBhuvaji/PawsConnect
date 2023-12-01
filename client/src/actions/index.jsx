@@ -31,7 +31,7 @@ export const setProfile = (data) => ({
 });
 
 export function signInAPI(){
-    console.log("signInAPI");
+    // console.log("signInAPI");
     return (dispatch) =>{
         auth
         .signInWithPopup(provider)
@@ -131,7 +131,7 @@ export function postArticleAPI(payload) {
 }
 
 export function postProfileAPI(payload) {
-    console.log("In postProfileAPI");
+    // console.log("In postProfileAPI");
     return (dispatch) => {
         dispatch(setLoading(true));
 
@@ -173,7 +173,7 @@ export function postProfileAPI(payload) {
 }
 
 export function postJobsAPI(payload) {
-    console.log("In postJobsAPI");
+    // console.log("In postJobsAPI");
     return (dispatch) => {
         dispatch(setLoading(true));
             db.collection('jobs').add({
@@ -250,7 +250,7 @@ export function getProfileAPI(user_email) {
   
         const snapshot = await db.collection('profile').where('actor.description', '==', user_email).get();
         const payload = snapshot.docs.map((doc) => doc.data());
-        console.log("SENDING PAYLOAD", payload);
+        // console.log("SENDING PAYLOAD", payload);
         dispatch(setProfile(payload));
         return payload;
       } catch (error) {

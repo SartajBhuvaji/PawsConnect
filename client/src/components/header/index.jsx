@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import React, { Component } from "react"
+import React from "react"
 import { connect } from "react-redux";
 import { signOutAPI } from "../../actions";
-import Jobs from '../jobs';
 import { NavLink } from "react-router-dom";
 
 const Header =(props) =>{
@@ -53,8 +52,7 @@ const Header =(props) =>{
                         </User>
                     </NavListWrap>
                 </Nav>
-
-
+                
             </Content>
        </Container>
     );
@@ -237,9 +235,7 @@ const Work = styled(User)`
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signOut: () => dispatch(signOutAPI()),
-
-    
+        signOut: () => dispatch(signOutAPI()),    
     };
 };
 
@@ -248,6 +244,5 @@ const mapStateToProps = (state) => {
         user: state.userState.user,
     };
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

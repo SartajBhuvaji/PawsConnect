@@ -10,7 +10,12 @@ const Main = (props) => {
   const [showModal, setShowModal] = useState("close");
 
   useEffect(() => {
-    props.getArticles();
+    if (!localStorage.getItem("hasVisited")) {
+      localStorage.setItem("hasVisited", true);
+      window.location.reload();
+    } else {
+      props.getArticles();
+    }
   }, [props]);
 
   const handleClick = (e) => {
@@ -70,7 +75,6 @@ const Main = (props) => {
             <img src="/images/ellipsis.svg" alt="" />
           </button>
         </SharedActor>
-
         <Description>{article.video?.description}</Description>
  
         {
