@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { postProfileAPI } from '../../actions';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate instead of useHistory
 import firebase from 'firebase/compat/app';
 
 const PetParentProfile = (props) => {
+  // Replace useHistory with useNavigate
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    user_email : props.user.email,
+    user_email: props.user.email,
     user_name: props.user.displayName,
     user_photo: props.user.photoURL,
     date: firebase.firestore.Timestamp.now(),
@@ -17,11 +20,18 @@ const PetParentProfile = (props) => {
     account_type: 'pet_parent',
   });
 
+  const [submitted, setSubmitted] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await props.postProfileAPI(formData);
-      // window.location.href = '/home';
+      setSubmitted(true);
+
+      // Redirect to /home after a delay (you can adjust the delay as needed)
+      setTimeout(() => {
+        navigate('/home'); // Use navigate instead of history.push
+      }, 2000); // Redirect after 2 seconds
     } catch (error) {
       console.error('Error:', error);
     }
@@ -36,7 +46,9 @@ const PetParentProfile = (props) => {
           ) : (
             <img src="/images/user.svg" alt="" />
           )}
-          <Title>Pet Parent {props.user ? props.user.displayName : ''}, lets complete your account.</Title>
+          <Title>
+            Pet Parent {props.user ? props.user.displayName : ''}, let's complete your account.
+          </Title>
         </div>
       </TitleBox>
 
@@ -49,7 +61,9 @@ const PetParentProfile = (props) => {
               name="pets_name"
               placeholder="Enter your Pet's Name"
               value={formData.pets_name}
-              onChange={(e) => {setFormData({...formData,pets_name: e.target.value});}}
+              onChange={(e) => {
+                setFormData({ ...formData, pets_name: e.target.value });
+              }}
               required
             />
           </div>
@@ -60,24 +74,31 @@ const PetParentProfile = (props) => {
               name="pets_breed"
               placeholder="Enter your Pet's Breed"
               value={formData.pets_breed}
-              onChange={(e) => {setFormData({...formData,pets_breed: e.target.value});}}
+              onChange={(e) => {
+                setFormData({ ...formData, pets_breed: e.target.value });
+              }}
               required
             />
           </div>
           <div style={{ paddingTop: '20px' }}>
             <label>Pet's Age</label>
-            
+
             <Input
               type="text"
               name="pets_age"
               placeholder="Enter your Pet's age"
               value={formData.pets_age}
-              onChange={(e) => {setFormData({...formData,pets_age: e.target.value});}}
+              onChange={(e) => {
+                setFormData({ ...formData, pets_age: e.target.value });
+              }}
               required
             />
           </div>
-          <SubmitButton type="submit" onSubmit={handleSubmit}>Update Profile</SubmitButton>
-          <SubmitButton type="submit" onClick={() => window.location.href = '/profile'}>Back</SubmitButton>
+          <SubmitButton type="submit">Update Profile</SubmitButton>
+          <SubmitButton type="button" onClick={() => navigate('/profile')}>
+            Back
+          </SubmitButton>
+          {submitted && <p>Profile Updated</p>}
         </form>
       </CommonCard>
     </Container>
@@ -177,7 +198,7 @@ const Input = styled.input`
 
 
 const SubmitButton = styled.button`
-  background-color: #0a66c2;
+  background-color: #70b5f9;
   color: white;
   border: none;
   margin-right: 20px;

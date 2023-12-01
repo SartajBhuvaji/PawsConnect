@@ -1,28 +1,36 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import {Header} from "../header";
 import { postProfileAPI } from '../../actions';
 import firebase from 'firebase/compat/app';
+import { useNavigate } from 'react-router-dom';
 
 const PetProfessioalProfile = (props) => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    user_email : props.user.email,
+    user_email: props.user.email,
     user_name: props.user.displayName,
     user_photo: props.user.photoURL,
     date: firebase.firestore.Timestamp.now(),
-
     business_name: '',
     business_type: '',
     account_type: 'pet_professional',
     rating: 0,
   });
 
+  const [submitted, setSubmitted] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await props.postProfileAPI(formData);
-      window.location.href = '/home';
+      setSubmitted(true);
+
+      // Redirect to /home after a delay (you can adjust the delay as needed)
+      setTimeout(() => {
+        navigate('/home');
+      }, 2000); // Redirect after 2 seconds
     } catch (error) {
       console.error('Error:', error);
     }
@@ -37,7 +45,9 @@ const PetProfessioalProfile = (props) => {
           ) : (
             <img src="/images/user.svg" alt="" />
           )}
-          <Title>Pet Professional {props.user ? props.user.displayName : ''}, lets complete your account.</Title>
+          <Title>
+            Pet Professional {props.user ? props.user.displayName : ''}, let's complete your account.
+          </Title>
         </div>
       </TitleBox>
 
@@ -50,7 +60,9 @@ const PetProfessioalProfile = (props) => {
               name="business_name"
               placeholder="Enter the name of your business"
               value={formData.business_name}
-              onChange={(e) => {setFormData({...formData,business_name: e.target.value});}}
+              onChange={(e) => {
+                setFormData({ ...formData, business_name: e.target.value });
+              }}
               required
             />
           </div>
@@ -61,12 +73,17 @@ const PetProfessioalProfile = (props) => {
               name="business_type"
               placeholder="Photographer, Groomer, Trainer, etc."
               value={formData.business_type}
-              onChange={(e) => {setFormData({...formData,business_type: e.target.value});}}
+              onChange={(e) => {
+                setFormData({ ...formData, business_type: e.target.value });
+              }}
               required
             />
           </div>
-          <SubmitButton type="submit" onSubmit={handleSubmit}>Update Profile</SubmitButton>
-          <SubmitButton type="submit" onClick={() => window.location.href = '/profile'}>Back</SubmitButton>
+          <SubmitButton type="submit">Update Profile</SubmitButton>
+          <SubmitButton type="button" onClick={() => navigate('/profile')}>
+            Back
+          </SubmitButton>
+          {submitted && <p>Profile Updated</p>}
         </form>
       </CommonCard>
     </Container>
@@ -101,7 +118,6 @@ const TitleBox = styled(CommonCard)`
   color: #958b7b;
   margin: 0 0 20px;
   margin-top: 80px;
-  
   background: white;
   div {
     button {
@@ -148,8 +164,8 @@ const TitleBox = styled(CommonCard)`
         }
       }
     }
-  }`;
-
+  }
+`;
 
 const Input = styled.input`
   width: 100%;
@@ -164,7 +180,6 @@ const Input = styled.input`
     border: 1px solid #70b5f9;
   }
 `;
-
 
 const SubmitButton = styled.button`
   background-color: #0a66c2;

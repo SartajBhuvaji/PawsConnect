@@ -56,7 +56,6 @@ function App(props) {
             <Jobs />
             </>}>"      
           </Route>
-
         </Routes>
       </Router>
     </div>
