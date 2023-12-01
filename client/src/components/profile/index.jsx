@@ -1,24 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-
-import Main from "./petParentProfile";
-
 import { Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import AccountChoice from './accountChoice';
-import PetParentProfile from './petParentProfile';
-
 
 const Profile = (props) => {
     return( 
             <Container>
-                 {
+                {
                     !props.user && <Navigate to="/" />
                 }
                 <Section>                  
                 </Section>
                 <Layout>
-                    
                     <AccountChoice />
                 </Layout>
                 <SubmitButton type="submit" onClick={() => window.location.href = '/home'}>Back</SubmitButton>
@@ -31,29 +25,8 @@ const Container = styled.div`
     max-width: 100%;
 `
 
-const Content = styled.div`
-    max-width: 1128px;
-    margin-left: auto;
-    margin-right: auto;
-`
-
 const Section = styled.section`
     padding: 16px 0;
-
-    // min-height: 50px;
-    // padding: 16px 0;
-    // box-sizing: content-box;
-    // text-align: center;
-    // text-decoration: underline;
-    // display: flex;
-    // justify-content: center;
-    // h5 {
-    //     color: #0a66c2;
-    //     font-size: 14px;
-    //     a {
-    //         font-weight: 700;
-    //     }
-    // }
      p {
          font-size: 14px;
          color: #434649;
@@ -83,8 +56,8 @@ const SubmitButton = styled.button`
   font-weight: 600;
   margin-top: 20px;
 
-  :hover {
-    background-color: #5a9ee6;
+  &:hover {
+    background-color: #5a9ee6; 
   }
 `;
 const mapStateToProps = (state) => {

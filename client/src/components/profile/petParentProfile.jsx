@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { postProfileAPI } from '../../actions';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate instead of useHistory
+import { useNavigate } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
 
 const PetParentProfile = (props) => {
-  // Replace useHistory with useNavigate
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     user_email: props.user.email,
     user_name: props.user.displayName,
@@ -24,14 +23,13 @@ const PetParentProfile = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       await props.postProfileAPI(formData);
       setSubmitted(true);
-
-      // Redirect to /home after a delay (you can adjust the delay as needed)
       setTimeout(() => {
-        navigate('/home'); // Use navigate instead of history.push
-      }, 2000); // Redirect after 2 seconds
+        navigate('/home'); 
+      }, 2000); 
     } catch (error) {
       console.error('Error:', error);
     }
@@ -198,18 +196,18 @@ const Input = styled.input`
 
 
 const SubmitButton = styled.button`
-  background-color: #70b5f9;
+  background-color: #0a66c2;
   color: white;
   border: none;
-  margin-right: 20px;
   padding: 10px 20px;
   border-radius: 5px;
+  margin-right: 20px;
   cursor: pointer;
   font-weight: 600;
   margin-top: 20px;
 
-  :hover {
-    background-color: #5a9ee6;
+  &:hover {
+    background-color: #5a9ee6; 
   }
 `;
 

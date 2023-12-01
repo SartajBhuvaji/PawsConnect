@@ -110,6 +110,9 @@ const JobApplyButton = styled.button`
   span {
     color: white;
   }
+    &:hover {
+    background-color: #5a9ee6; /* Adjust the hover background color */
+  }
 `;
 
 

@@ -7,7 +7,6 @@ const AccountChoice = (props) => {
   
   const navigate = useNavigate();
   const handleChoice = (choice) => {
-        //console.log('choice', choice);
     if (choice === 'Pet Parent') navigate('/profile/pet_parent');
     if (choice === 'Pet Professional')  navigate('/profile/pet_professional');
   };
@@ -110,8 +109,8 @@ const TitleBox = styled(CommonCard)`
       }
     }
   }`;
-
-const Button = styled.button`
+  
+  const Button = styled.button`
   background-color: #70b5f9;
   text-align: center;
   font-size: 14px;
@@ -122,8 +121,13 @@ const Button = styled.button`
   cursor: pointer;
   font-weight: 600;
   margin-top: 10px;
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
   margin-right: 40px;
+  width: 150px; /* Adjust the width as needed */
+
+  &:hover {
+    background-color: #5a9ee6; /* Adjust the hover background color */
+  }
 `;
 
 const mapStateToProps = (state) => {

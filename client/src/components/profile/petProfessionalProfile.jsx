@@ -6,8 +6,8 @@ import firebase from 'firebase/compat/app';
 import { useNavigate } from 'react-router-dom';
 
 const PetProfessioalProfile = (props) => {
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     user_email: props.user.email,
     user_name: props.user.displayName,
@@ -27,10 +27,10 @@ const PetProfessioalProfile = (props) => {
       await props.postProfileAPI(formData);
       setSubmitted(true);
 
-      // Redirect to /home after a delay (you can adjust the delay as needed)
+      
       setTimeout(() => {
         navigate('/home');
-      }, 2000); // Redirect after 2 seconds
+      }, 2000); 
     } catch (error) {
       console.error('Error:', error);
     }
@@ -192,8 +192,8 @@ const SubmitButton = styled.button`
   font-weight: 600;
   margin-top: 20px;
 
-  :hover {
-    background-color: #5a9ee6;
+  &:hover {
+    background-color: #5a9ee6; 
   }
 `;
 
