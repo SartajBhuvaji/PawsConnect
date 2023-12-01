@@ -6,7 +6,7 @@ import { getJobsAPI } from "../../actions";
 const Rightside = (props) => {
   useEffect(() => {
     props.getJobs();
-  }, []);
+  }, [] );
 
   return (
     <Container>
@@ -19,13 +19,13 @@ const Rightside = (props) => {
           </a>
         </Widget>
         <FeedList>
-        {props.jobs?.slice(0, 3).map((jobs, index) => (
+        {props.jobs?.slice(0, 3).map((job, index) => (
             <li key={index}>
               <WidgetTabs>
-                {console.log("sdsa dasdsadsadsds",jobs)}
-                {jobs.job_post?.company_name}
+                {console.log("sdsa dasdsadsadsds",job)}
+                {job.job_post?.company_name}
                 <br></br>
-                {jobs.job_post?.job_title}
+                {job.job_post?.job_title}
               </WidgetTabs>
             </li>
           ))}

@@ -65,7 +65,7 @@ const Jobs = (props) => {
           </SharedActor>
           <Description>
             <a>
-              {console.log("dasdaydhasildu ", job)}
+              {/* {console.log("dasdaydhasildu ", job)} */}
               <CompanyName>
                 <span>{job.job_post?.company_name}</span>
               </CompanyName>
@@ -78,19 +78,40 @@ const Jobs = (props) => {
               <JobPay>
                 <span>{job.job_post?.job_pay}</span>
               </JobPay>
+              <JobApplyButton onClick={() => window.location.href = `mailto:${props.user?.email}`}>
+                <span>Apply</span>
+              </JobApplyButton>
+
             </a>
           </Description>
         </Article>
       ))}
   </Content>
-
-
       <PostJobs showModal={showModal} handleClick= {handleClick}/>   
     </Container>
     )}
     </>
     )
 };
+
+const JobApplyButton = styled.button`
+  margin-top: 5px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  color: rgba(0,0,0,0.9);
+  font-size: 14px;
+  font-weight: 200;
+  text-align: left;
+  background-color: #0a66c2;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  span {
+    color: white;
+  }
+`;
+
 
 const CompanyName = styled.div`
   margin: 0 16px;
@@ -259,7 +280,7 @@ const JobPay = styled.ul`
   overflow: auto;
   margin: 0 16px;
   padding: 8px 0;
-  border-bottom: 1px solid #e9e5df;
+  //border-bottom: 1px solid #e9e5df;
   list-style: none;
   li {
     margin-right: 5px;
