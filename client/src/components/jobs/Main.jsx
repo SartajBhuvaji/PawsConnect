@@ -10,7 +10,7 @@ const Jobs = (props) => {
 
   useEffect(() => {
     props.getArticles();
-  }, []);
+  }, [props]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -162,7 +162,7 @@ const CommonCard = styled.div`
 const Sharebox = styled(CommonCard)`
   display: flex;
   flex-direction: column;
-  color: #958b7b;
+  background-color: #f7f7f7;
   margin: 0 0 8px;
   background: white;
    div {
@@ -179,6 +179,7 @@ const Sharebox = styled(CommonCard)`
      }
     &:first-child {
        display: flex;
+       background-color: #f7f7f7;
        align-items: center;
         padding: 8px 16px 0px 16px;
         img {

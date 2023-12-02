@@ -25,7 +25,7 @@ const Header =(props) =>{
                             <span>Home</span>
                         </NavLink>
                         <NavLink to="/profile" exact activeClassName="active" className="button-link">
-                            <img src="/images/nav-home.svg" alt="nav-home" />
+                            <img src="/images/profile-icon.svg" alt="nav-home" width={25} height={25}/>
                             <span>Profile</span>
                         </NavLink>
                         <NavLink to="/jobs" exact activeClassName="active" className="button-link">
@@ -83,43 +83,8 @@ const Logo = styled.span`
     font-size: 0px;
 `;
 
-const Search = styled.div`
-    opacity: 1;
-    flex-grow: 1;
-    position: relative;
-    & > div{
-        max-width: 280px;
-        input{
-            border: none;
-            box-shadow: none;
-            background-color: #eef3f8;
-            border-radius: 2px;
-            color: rgba(0,0,0,0.9);
-            width: 218px;
-            padding: 0 8px 0 40px;
-            line-height: 1.75;
-            font-weight: 400;
-            font-size: 14px;
-            height: 34px;
-            border-color: #dce6f1;
-            vertical-align: text-top;
-        }
-    }
-`;
 
-const SearchIcon = styled.div`
-    width: 40px;
-    position: absolute;
-    z-index: 1;
-    top: 10px;
-    left: 2px;
-    border-radius: 0 2px 2px 0;
-    margin: 0;
-    pointer-events: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
+
 const Nav = styled.nav`
     margin-left: auto;
     display: block;

@@ -44,7 +44,7 @@ const FollowCard = styled.div`
   text-align: center;
   overflow: hidden;
   margin-bottom: 8px;
-  background-color: #fff;
+  background-color: #f7f7f7;
   border-radius: 5px;
   position: relative;
   border: none;
@@ -91,7 +91,7 @@ const WidgetTabs = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   // padding-top: 12px;
   padding-bottom: 12px;
-  background-color: #FFFFFF;
+  background-color: #f7f7f7;
   align-items: left;
 `;
 
@@ -99,6 +99,7 @@ const FeedList = styled.ul`
   margin-top: 5px;
   text-align: left;
   margin-left: -20px;
+  background-color: #f7f7f7;
 
   li {
     display: flex;
