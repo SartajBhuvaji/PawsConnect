@@ -9,7 +9,7 @@ const Jobs = (props) => {
   const [showModal, setShowModal] = useState("close");
 
   useEffect(() => {
-    props.getArticles();
+    props.getJobs();
   }, [props]);
 
   const handleClick = (e) => {
@@ -312,7 +312,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  getArticles: () => dispatch(getJobsAPI()),
+  getJobs: () => dispatch(getJobsAPI()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Jobs);

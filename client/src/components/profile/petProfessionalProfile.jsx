@@ -9,9 +9,9 @@ const PetProfessioalProfile = (props) => {
 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    user_email: props.user.email,
-    user_name: props.user.displayName,
-    user_photo: props.user.photoURL,
+    user_email: props?.user?.email || '',
+    user_name: props?.user?.displayName || '',
+    user_photo: props?.user?.photoURL || '',
     date: firebase.firestore.Timestamp.now(),
     business_name: '',
     business_type: '',
@@ -90,9 +90,13 @@ const PetProfessioalProfile = (props) => {
   );
 };
 
+
 const Container = styled.div`
   grid-area: main;
-  padding: 20px;
+  text-align: left;
+  margin-left: 20%;
+  margin-top: 20px;
+  width: 60%;
 `;
 
 const Title = styled.h1`
@@ -117,7 +121,7 @@ const TitleBox = styled(CommonCard)`
   flex-direction: column;
   color: #958b7b;
   margin: 0 0 20px;
-  margin-top: 80px;
+  margin-top: 125px;
   background: white;
   div {
     button {
@@ -164,8 +168,8 @@ const TitleBox = styled(CommonCard)`
         }
       }
     }
-  }
-`;
+  }`;
+
 
 const Input = styled.input`
   width: 100%;
@@ -180,6 +184,7 @@ const Input = styled.input`
     border: 1px solid #70b5f9;
   }
 `;
+
 
 const SubmitButton = styled.button`
   background-color: #0a66c2;
@@ -196,6 +201,7 @@ const SubmitButton = styled.button`
     background-color: #5a9ee6; 
   }
 `;
+
 
 const mapStateToProps = (state) => {
   return {

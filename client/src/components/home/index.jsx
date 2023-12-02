@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 
 
 const Home = (props) => {
+    
     return( 
             <Container>
                 {

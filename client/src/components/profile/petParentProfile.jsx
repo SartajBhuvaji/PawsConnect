@@ -9,9 +9,9 @@ const PetParentProfile = (props) => {
 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    user_email: props.user.email,
-    user_name: props.user.displayName,
-    user_photo: props.user.photoURL,
+    user_email: props?.user?.email || '',
+    user_name: props?.user?.displayName || '',
+    user_photo: props?.user?.photoURL || '',
     date: firebase.firestore.Timestamp.now(),
     pets_name: '',
     pets_breed: '',
@@ -87,7 +87,11 @@ const PetParentProfile = (props) => {
               placeholder="Enter your Pet's age"
               value={formData.pets_age}
               onChange={(e) => {
-                setFormData({ ...formData, pets_age: e.target.value });
+                if (isNaN(e.target.value)) {
+                  alert('Please enter a number');
+                } else {
+                  setFormData({ ...formData, pets_age: e.target.value });
+                }
               }}
               required
             />
@@ -105,7 +109,10 @@ const PetParentProfile = (props) => {
 
 const Container = styled.div`
   grid-area: main;
-  padding: 20px;
+  text-align: left;
+  margin-left: 20%;
+  margin-top: 20px;
+  width: 60%;
 `;
 
 const Title = styled.h1`
@@ -130,7 +137,7 @@ const TitleBox = styled(CommonCard)`
   flex-direction: column;
   color: #958b7b;
   margin: 0 0 20px;
-  margin-top: 80px;
+  margin-top: 125px;
   background: white;
   div {
     button {
