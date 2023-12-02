@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Leftside from "../leftSide/Leftside";
 import Main from "./Main";
@@ -16,6 +16,7 @@ const Home = (props) => {
                 <Section>                   
                                     
                 </Section>
+                
 
                 <Layout>
                     <Leftside />
@@ -29,6 +30,7 @@ const Home = (props) => {
 const Container = styled.div`
     padding-top: 52px;
     max-width: 100%;
+    background-color: #f3f2ef;
 `
 
 const Section = styled.section`
@@ -51,7 +53,7 @@ const Layout = styled.div`
 `
 const mapStateToProps = (state) => {
     return {
-        user: state.userState.user,
+        user: state.userState.user || null,
     };
 };
 
