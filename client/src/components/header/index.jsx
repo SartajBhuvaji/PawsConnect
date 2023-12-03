@@ -195,10 +195,6 @@ const Description = styled.div`
     text-align: center;
 `;
 
-const Work = styled(User)`
-    border-left: 1px solid rgba(0,0,0,0.08);
-`;
-
 const mapDispatchToProps = (dispatch) => {
     return {
         signOut: () => dispatch(signOutAPI()),    

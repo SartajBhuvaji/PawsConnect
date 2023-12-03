@@ -6,7 +6,7 @@ import { getJobsAPI } from "../../actions";
 const Rightside = (props) => {
   useEffect(() => {
     props.getJobs();
-  }, [] );
+  }, [props] );
 
   return (
     <Container>
