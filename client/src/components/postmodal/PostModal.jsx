@@ -39,8 +39,6 @@ const PostModal = (props) => {
             description: editorText,
             timestamp: firebase.firestore.Timestamp.now(),
         };
-        // console.log("FLAG 1")
-        // console.log(payload);
         props.postArticleAPI(payload);
         reset(e);
     };
@@ -52,7 +50,6 @@ const PostModal = (props) => {
         setAssetArea("");
 
         props.handleClick(e);
-
     }
 
     return (
@@ -265,7 +262,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
     postArticleAPI: (payload) => dispatch(postArticleAPI(payload)),
-   // signOut: () => dispatch(signOutAPI()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostModal);

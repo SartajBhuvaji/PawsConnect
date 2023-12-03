@@ -32,7 +32,7 @@ const Leftside = (props) => {
     };
 
     fetchData();
-  }, []); //props.user?.email
+  }, []); 
 
   return (
     <Container>
@@ -245,6 +245,5 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   getProfile: (email) => dispatch(getProfileAPI(email)),
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Leftside);

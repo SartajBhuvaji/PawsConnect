@@ -190,14 +190,6 @@ const UserInfo = styled.div`
 `;
 
 
-const AssetButton = styled.div`
-    display: flex;
-    align-items: center;
-    height: 40px;
-    min-width: auto;
-    color: rgba(0,0,0,0.5);
-`;
-
 const PostButton = styled.button`
     min-width: 60px;
     margin-left: auto;
@@ -253,7 +245,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
     postJobsAPI: (payload) => dispatch(postJobsAPI(payload)),
-   // signOut: () => dispatch(signOutAPI()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostJobs);

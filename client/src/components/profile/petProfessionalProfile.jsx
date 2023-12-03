@@ -26,8 +26,6 @@ const PetProfessioalProfile = (props) => {
     try {
       await props.postProfileAPI(formData);
       setSubmitted(true);
-
-      
       setTimeout(() => {
         navigate('/home');
       }, 2000); 
@@ -201,7 +199,6 @@ const SubmitButton = styled.button`
     background-color: #5a9ee6; 
   }
 `;
-
 
 const mapStateToProps = (state) => {
   return {

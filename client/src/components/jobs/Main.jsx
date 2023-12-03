@@ -115,7 +115,6 @@ const JobApplyButton = styled.button`
   }
 `;
 
-
 const CompanyName = styled.div`
   margin: 0 16px;
   overflow: hidden;
@@ -307,7 +306,7 @@ const mapStateToProps = (state) => {
     user: state.userState.user,
     loading: state.articleState.loading,
     articles: state.articleState.articles,
-    jobs: state.articleState.jobs, // Map jobs from state
+    jobs: state.articleState.jobs, 
   };
 };
 

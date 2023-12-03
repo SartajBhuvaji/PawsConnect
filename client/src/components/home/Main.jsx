@@ -92,19 +92,7 @@ const Main = (props) => {
         }
 
         <SocialCounts>
-          {/* <li>
-            <button>
-              <img src="https://static-exp1.licdn.com/sc/h/d310t2g24pvdy4pt1jkedo4yb" alt="" />
-              <span>75</span>
-            </button>
-          </li> */}
         </SocialCounts>
-        {/* <SocialActions>
-          <button>
-            <img src="/images/like-icon.svg" alt="" />
-            <span>Like</span>
-          </button>
-        </SocialActions> */}
         
       </Article> ))}
       </Content>
@@ -277,28 +265,6 @@ const SocialCounts = styled.ul`
     font-size: 12px;
     button {
       display: flex;
-    }
-  }
-`;
-
-const SocialActions = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: flex-start;
-  margin: 0;
-  min-height: 10px;
-  padding: 4px 8px;
-  button {
-    display: inline-flex;
-    align-items: center;
-    padding: 8px;
-    color: #0a66c2;
-    border: none;
-    background-color: white;
-    @media(min-width: 768px){
-      span {
-        margin-left: 8px;
-      }
     }
   }
 `;

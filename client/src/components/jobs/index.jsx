@@ -26,13 +26,7 @@ const Container = styled.div`
     padding-top: 52px;
     max-width: 100%;
     background-color: #f3f2ef;
-`
-
-const Content = styled.div`
-    max-width: 1128px;
-    margin-left: auto;
-    margin-right: auto;
-`
+`;
 
 const Section = styled.section`
     padding: 16px 0;
@@ -42,16 +36,16 @@ const Section = styled.section`
          color: #434649;
          font-weight: 600;
      }
-`
+`;
+
 const Layout = styled.div`
     display: grid;
     grid-template-areas: "leftside main rightside";
     grid-template-columns: minmax(0,5fr) minmax(0,12fr) minmax(300px,7fr);
     column-gap: 25px;
     row-gap: 25px;
-    margin: 25px 0;
-         
-`
+    margin: 25px 0;       
+`;
 const mapStateToProps = (state) => {
     return {
         user: state.userState.user,
