@@ -2,8 +2,15 @@ import styled from "styled-components";
 import {connect} from "react-redux";
 import { signInAPI } from "../../actions";
 import { Navigate } from 'react-router-dom';
+import { useEffect } from "react";
 
+import firebase from 'firebase/compat/app';
 const Login = (props) => {
+
+  useEffect(() => {
+    props.checkUser();
+  }, []);
+  
   return (
     <Container>
       { 
@@ -146,8 +153,26 @@ const mapStateToProps = (state) => {
   };
 }
 
+// const mapDispatchToProps = (dispatch) => ({
+//  signIn:() => dispatch(signInAPI()),
+// });
+
 const mapDispatchToProps = (dispatch) => ({
-  signIn:() => dispatch(signInAPI()),
+  signIn: () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then((result) => {
+      dispatch({ type: 'LOGIN', user: result.user });
+    });
+  },
+  checkUser: () => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        dispatch({ type: 'LOGIN', user });
+      } else {
+        dispatch({ type: 'LOGOUT' });
+      }
+    });
+  },
 });
 
 

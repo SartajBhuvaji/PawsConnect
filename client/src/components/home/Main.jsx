@@ -7,7 +7,7 @@ import { getArticlesAPI } from "../../actions";
 import ReactPlayer from "react-player";
 
 const Main = (props) => {
-  const [showModal, setShowModal] = useState("close");
+  const [showModal, setShowModal] = useState(true);
 
   useEffect(() => {
     if (!localStorage.getItem("hasVisited")) {
