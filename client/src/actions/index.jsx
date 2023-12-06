@@ -66,11 +66,26 @@ export function signOutAPI(){
 }
 
 export function postArticleAPI(payload) {
+
+    // const payload = {
+    //     image: shareImage,
+    //     video: videoLink,
+
+    //     user: props.user,
+    //     description: editorText,
+    //     timestamp: firebase.firestore.Timestamp.now(),
+
+
     return (dispatch) => {
         dispatch(setLoading(true));
+        console.log("RECEVIVED",payload);
 
-        if (payload.image !== '') {
-            const storageRef = ref(storage, 'user-posts/' + payload.image.name); // Get a reference to the storage path
+        if (payload.image!= '') {
+            console.log("In image");
+            var randomName = Math.random().toString(36).substring(2, 15) + payload.image.name;
+            console.log("New name ->", randomName);
+
+            const storageRef = ref(storage, 'user-posts/' + randomName); // Get a reference to the storage path
 
             uploadBytes(storageRef, payload.image).then(async (snapshot) => {
             const downloadURL = await getDownloadURL(snapshot.ref);

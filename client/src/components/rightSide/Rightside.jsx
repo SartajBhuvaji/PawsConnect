@@ -5,6 +5,7 @@ import { getJobsAPI } from "../../actions";
 
 const Rightside = (props) => {
   useEffect(() => {
+    //console.log(props);
     props.getJobs();
   }, [props] );
 

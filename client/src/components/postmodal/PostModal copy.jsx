@@ -35,6 +35,7 @@ const PostModal = (props) => {
             image: shareImage,
             video: videoLink,
 
+
             user: props.user,
             description: editorText,
             timestamp: firebase.firestore.Timestamp.now(),
@@ -45,10 +46,10 @@ const PostModal = (props) => {
     };
     
     const reset  = (e) => {
-        setEditorText('');
-        setShareImage('');
-        setVideoLink('')
-        setAssetArea('');
+        setEditorText("");
+        setShareImage("");
+        setVideoLink("");
+        setAssetArea("");
 
         props.handleClick(e);
     }
@@ -81,12 +82,18 @@ const PostModal = (props) => {
                     {
                         assetArea === "image" ? (
                     <UploadImage>
-                        <input type="file" accept="image/gif, image/jpeg, image/png" id="file" style={{display: "none"}} onChange={handleChange} />
-                        <p><label htmlFor="file">Select image</label></p>
-                        {
-                            shareImage && <img src={URL.createObjectURL(shareImage)} alt="share-image" />  
-                        }
-                    </UploadImage>
+                        <input
+                            type="file"
+                            accept="image/gif, image/jpeg, image/png"
+                            id="file"
+                            style={{ display: "none" }}
+                            onChange={(e) => setShareImage(e.target.files[0])}
+                        />
+                        <p>
+                            <label htmlFor="file">Select image</label>
+                        </p>
+                        {shareImage && <img src={URL.createObjectURL(shareImage)} alt="share-image" />}
+                        </UploadImage>
                     ) : (
                         assetArea === "media" &&
                         <>

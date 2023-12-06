@@ -57,8 +57,8 @@ const Jobs = (props) => {
             <a>
               <img src={job.actor?.image} alt="" style={{ borderRadius: "50%" }} />
               <div>
-                <span>{props.user?.displayName}</span>
-                <span>{props.user?.email}</span>
+                <span>{job.actor?.user_name}</span>
+                <span>{job.actor?.description}</span>
                 <span>{job.actor?.date.toDate().toLocaleDateString()}</span>
               </div>
             </a>
