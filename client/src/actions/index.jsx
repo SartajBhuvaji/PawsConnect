@@ -83,7 +83,7 @@ export function postArticleAPI(payload) {
         if (payload.image!= '') {
             console.log("In image");
             var randomName = Math.random().toString(36).substring(2, 15) + payload.image.name;
-            console.log("New name ->", randomName);
+            // console.log("New name ->", randomName);
 
             const storageRef = ref(storage, 'user-posts/' + randomName); // Get a reference to the storage path
 
@@ -98,7 +98,7 @@ export function postArticleAPI(payload) {
                         image: payload.user.photoURL,
                     },
                     video: {
-                        video: payload.video,
+                        video: '',
                         sharedImg: downloadURL,
                         comments: 0,
                         description: payload.description,

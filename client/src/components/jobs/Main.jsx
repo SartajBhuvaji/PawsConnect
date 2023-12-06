@@ -76,7 +76,7 @@ const Jobs = (props) => {
                 <span>{job.job_post?.job_description}</span>
               </JobDescription>
               <JobPay>
-                <span>{job.job_post?.job_pay}</span>
+                <span>{job.job_post?.job_pay}$/hr</span>
               </JobPay>
               <JobApplyButton onClick={() => window.location.href = `mailto:${props.user?.email}`}>
                 <span>Apply</span>
