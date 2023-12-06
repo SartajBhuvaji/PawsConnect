@@ -22,9 +22,6 @@ const Leftside = (props) => {
     const fetchData = async () => {
       try {
         const data = await props.getProfile(props.user?.email);
-        // console.log("Data that I received", data);
-
-        // Update the component state with the received data
         setProfileData(data);
       } catch (error) {
         console.error("Error fetching profile data:", error);
@@ -117,7 +114,7 @@ const Leftside = (props) => {
 
 const Container = styled.div`
   grid-area: leftside;
-  padding-left: 100px;
+  padding-left: 120px;
 `;
 
 const ArtCard = styled.div`

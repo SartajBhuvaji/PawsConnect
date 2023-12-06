@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {connect} from "react-redux";
-import { signInAPI } from "../../actions";
+// import { signInAPI } from "../../actions";
 import { Navigate } from 'react-router-dom';
 import { useEffect } from "react";
 
@@ -40,6 +40,7 @@ const Login = (props) => {
 
 const Container = styled.div`
   padding: 0px;
+  overflow: hidden;
 `;
 
 const Nav = styled.nav`
@@ -153,10 +154,6 @@ const mapStateToProps = (state) => {
   };
 }
 
-// const mapDispatchToProps = (dispatch) => ({
-//  signIn:() => dispatch(signInAPI()),
-// });
-
 const mapDispatchToProps = (dispatch) => ({
   signIn: () => {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -175,6 +172,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-
-//export default Login;
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -106,7 +106,6 @@ const Main = (props) => {
 
 const Container = styled.div`
   grid-area: main;
-  padding-left: 50px;
 `;
 
 const CommonCard = styled.div`
