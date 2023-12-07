@@ -1,7 +1,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/SartajBhuvaji/Data-Science-Project/tree/main/">
-    <img src="Images/logo.png" alt="logo" width="80" height="80">
+    <img src="_readme/pawsconnect_logo.png" alt="logo" width="200" height="200">
   </a>
 
 <h3 align="center">Paws Connect</h3>
