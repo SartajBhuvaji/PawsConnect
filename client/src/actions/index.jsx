@@ -30,8 +30,8 @@ export const setProfile = (data) => ({
   data,
 });
 
+// Handles Sign In
 export function signInAPI(){
-    // console.log("signInAPI");
     return (dispatch) =>{
         auth
         .signInWithPopup(provider)
@@ -43,6 +43,7 @@ export function signInAPI(){
     };
 }
 
+// Gets User Authentication
 export function getUserAuth(){
     return (dispatch) =>{
         auth.onAuthStateChanged(async (user) =>{
@@ -53,6 +54,7 @@ export function getUserAuth(){
     };
 }
 
+// Handles Sign Out
 export function signOutAPI(){
     return (dispatch) =>{
         auth
@@ -65,16 +67,8 @@ export function signOutAPI(){
     };
 }
 
+// Uploads Article data to the database
 export function postArticleAPI(payload) {
-
-    // const payload = {
-    //     image: shareImage,
-    //     video: videoLink,
-
-    //     user: props.user,
-    //     description: editorText,
-    //     timestamp: firebase.firestore.Timestamp.now(),
-
 
     return (dispatch) => {
         dispatch(setLoading(true));
@@ -83,9 +77,8 @@ export function postArticleAPI(payload) {
         if (payload.image!= '') {
             console.log("In image");
             var randomName = Math.random().toString(36).substring(2, 15) + payload.image.name;
-            // console.log("New name ->", randomName);
 
-            const storageRef = ref(storage, 'user-posts/' + randomName); // Get a reference to the storage path
+            const storageRef = ref(storage, 'user-posts/' + randomName);
 
             uploadBytes(storageRef, payload.image).then(async (snapshot) => {
             const downloadURL = await getDownloadURL(snapshot.ref);
@@ -145,8 +138,9 @@ export function postArticleAPI(payload) {
     };
 }
 
+// Uploads Profile data to the database
 export function postProfileAPI(payload) {
-    // console.log("In postProfileAPI");
+    
     return (dispatch) => {
         dispatch(setLoading(true));
 
@@ -187,8 +181,8 @@ export function postProfileAPI(payload) {
     }
 }
 
+// Uploads Job data to the database
 export function postJobsAPI(payload) {
-    // console.log("In postJobsAPI");
     return (dispatch) => {
         dispatch(setLoading(true));
             db.collection('jobs').add({
@@ -209,6 +203,7 @@ export function postJobsAPI(payload) {
     };
 }
 
+// Gets Article data from the database
 export function getArticlesAPI() {
     return (dispatch) => {
         let payload;
@@ -219,21 +214,7 @@ export function getArticlesAPI() {
     };
 }
 
-// export function getJobsAPI() {
-//     return (dispatch) => {
-//       db.collection('jobs')
-//         .orderBy('actor.date', 'desc')
-//         .get()
-//         .then((querySnapshot) => {
-//           const payload = querySnapshot.docs.map((doc) => doc.data());
-//           dispatch(getJobs(payload));
-//         })
-//         .catch((error) => {
-//           console.error('Error fetching jobs:', error);
-//         });
-//     };
-//   }
-
+// Gets Job data from the database
 export function getJobsAPI() {
     return (dispatch, getState) => {
       db.collection('jobs')
@@ -241,8 +222,6 @@ export function getJobsAPI() {
         .get()
         .then((querySnapshot) => {
           const payload = querySnapshot.docs.map((doc) => doc.data());
-  
-          // Check if the payload is different before dispatching
           const currentState = getState();
           if (!isEqual(currentState.articleState.jobs, payload)) {
             dispatch(getJobs(payload));
@@ -254,7 +233,7 @@ export function getJobsAPI() {
     };
   }
   
-
+// Gets Profile data from the database
 export function getProfileAPI(user_email) {
     return async (dispatch) => {
       try {
@@ -265,7 +244,7 @@ export function getProfileAPI(user_email) {
   
         const snapshot = await db.collection('profile').where('actor.description', '==', user_email).get();
         const payload = snapshot.docs.map((doc) => doc.data());
-        // console.log("SENDING PAYLOAD", payload);
+
         dispatch(setProfile(payload));
         return payload;
       } catch (error) {

@@ -88,7 +88,6 @@ return (
                     <SmallEditor>
                         <textarea value ={jobPay} 
                         placeholder="Pay ($/hr)" 
-                        // onChange={(e)=>setjobPay(e.target.value)}autoFocus={true} 
                         onChange={(e) => {
                             if (isNaN(e.target.value)) {
                               alert('Please enter a number');

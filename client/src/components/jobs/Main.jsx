@@ -65,7 +65,6 @@ const Jobs = (props) => {
           </SharedActor>
           <Description>
             <a>
-              {/* {console.log("dasdaydhasildu ", job)} */}
               <CompanyName>
                 <span>{job.job_post?.company_name}</span>
               </CompanyName>
