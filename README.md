@@ -22,20 +22,20 @@
 
 # PawsConnect
 
-PawsConnect, a social networking platform designed specifically for our flurry friends! 
+PawsConnect is a social networking platform designed specifically for our furry friends! 
 
 ## Description
 
-PawsConnect is social media platform based on LinkedIn and developed as a 
+PawsConnect is a social media platform based on LinkedIn and developed as a 
 Software as a Service (SAAS) web application, designed to facilitate how pet owners and pet 
 professionals connect and interact in the world of pet care.  
  
-In it's essence, PawsConnect allow users to create new accounts as either `Pet Parents` or 
+In its essence, PawsConnect allows users to create new accounts as either `Pet Parents` or 
 `Pet Professionals.` Pet Parents can post job listings tailored to their pet's needs, while Pet 
 Professionals can view and apply for these opportunities. 
  
 Beyond job postings, PawsConnect will enable Pet Parents to post events for their pets and 
-engage with other pet enthusiasts. Users can also share pet memories through images, videos and 
+engage with other pet enthusiasts. Users can also share pet memories through images, and videos and 
 connect with the community. Pet Professionals will have the option to post targeted 
 advertisements for dog-related products and services, such as toys and nutrition, expanding 
 their reach within the pet care community.
@@ -43,7 +43,7 @@ their reach within the pet care community.
 ## Features
 
 - User Authentication: Sign in with Google
-- Profile Creation: Create a unique profile for your dog as Pet parents or for you business as Pet professionals
+- Profile Creation: Create a unique profile for your dog as a Pet parents or for your business as a Pet professional
 - Community: Share text, photos or videos to the community
 - Job Feed: Create/apply for Jobs
 
@@ -64,10 +64,14 @@ Visit http://localhost:3000 in your browser
 ## Screenshots
 
 ### Home Page
+![home_page_1](https://github.com/SartajBhuvaji/PawsConnect/assets/31826483/06cd9b9d-0e7e-433b-a4c5-ae1feba223d6)
 
 
 ### Job Posting
+![job_page_2](https://github.com/SartajBhuvaji/PawsConnect/assets/31826483/48cdd12b-ca07-4130-902b-c449e6197770)
 
+### Firebase
+![firestore_1](https://github.com/SartajBhuvaji/PawsConnect/assets/31826483/9a554bea-5c23-4b82-be81-969c29f6a9d5)
 
 ## Built With ❤️ Using
 
