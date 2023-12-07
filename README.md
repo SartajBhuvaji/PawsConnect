@@ -65,9 +65,9 @@ Visit http://localhost:3000 in your browser
 
 ## Built With ❤️ Using
 
-- React v
-- Firebase v
-- Redux v
+- React v20.9.1
+- Firebase 
+- Redux v8.1.3
 
 ### Guide
 Dr. Xin Zhao
