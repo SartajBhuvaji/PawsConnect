@@ -63,6 +63,12 @@ Visit http://localhost:3000 in your browser
 
 ## Screenshots
 
+### Home Page
+
+
+### Job Posting
+
+
 ## Built With ❤️ Using
 
 - React v20.9.1
