@@ -101,12 +101,12 @@ const Leftside = (props) => {
             </Widget>
           </div>
         )}
-        <Item>
+        {/* <Item>
           <span>
             <img src="/images/item-icon.svg" alt="" />
             Premium Activated
           </span>
-        </Item>
+        </Item> */}
       </ArtCard>
     </Container>
   );
