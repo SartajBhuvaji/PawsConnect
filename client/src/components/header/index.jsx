@@ -37,18 +37,20 @@ const Header =(props) =>{
                         <a>
                             {
                                 props.user && props.user.photoURL ? (
-                                    <img src={props.user.photoURL} alt="user" />
+                                    <SignOut onClick={()=> props.signOut()}>
+                                        <img src="/images/signout-icon.svg" alt="sign-out" width="28" height="28"/>  
+                                    </SignOut>
                                 ):(
                                     <img src="/images/user.svg" alt="user" />
                                 )
                             }
-                                <span>
+                                {/* <span>
                                 <img src="/images/down-icon.svg" alt="down-icon" />
-                                </span>
+                                </span> */}
                             </a>
-                            <SignOut onClick={()=> props.signOut()}>
+                            {/* <SignOut onClick={()=> props.signOut()}>
                             <img src="/images/signout-icon.svg" alt="sign-out" width="28" height="28"/>    
-                            </SignOut>
+                            </SignOut> */}
                         </User>
                     </NavListWrap>
                 </Nav>
@@ -153,15 +155,15 @@ const NavList = styled.li`
 
 const SignOut = styled.div`
     position: absolute;
-    top: 45px;
+    //top: 45px;
     background: white;
-    border-radius: 0 0 5px 5px;
+    //border-radius: 0 0 5px 5px;
     width: 100px;
     height: 40px;
-    font-size: 16px;
-    transition-duration: 167ms;
+    //font-size: 16px;
+    //transition-duration: 167ms;
     text-align: center;
-    display: none;
+    padding-left: 10px; // Add left padding here
 `;
 
 const User = styled(NavList)`
@@ -178,13 +180,14 @@ const User = styled(NavList)`
         display: flex;
         align-items: center;
     }
-    &:hover{
-        ${SignOut}{
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-    }
+    // &:hover{
+    //     ${SignOut}{
+    //         align-items: center;
+    //         display: flex;
+    //         justify-content: center;
+    //         content: "Sign Out"; // Add the text 'Sign Out' here
+    //     }
+    // }
 `;
 const Description = styled.div`
     font-size: 22px;
