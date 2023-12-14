@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { connect } from "react-redux";
 import { getJobsAPI } from "../../actions";
 
@@ -8,6 +9,12 @@ const Rightside = (props) => {
     //console.log(props);
     props.getJobs();
   }, [props] );
+
+  const navigate = useNavigate();
+
+  const handleWidgetTabsClick = () => {
+    navigate('/jobs');
+  };
 
   return (
     <Container>
@@ -22,11 +29,13 @@ const Rightside = (props) => {
         <FeedList>
         {props.jobs?.slice(0, 3).map((job, index) => (
             <li key={index}>
+              <div onClick={handleWidgetTabsClick} style={{ cursor: 'pointer' }}>
               <WidgetTabs>
                 {job.job_post?.company_name}
                 <br></br>
                 {job.job_post?.job_title}
               </WidgetTabs>
+              </div>
             </li>
           ))}
         </FeedList>
